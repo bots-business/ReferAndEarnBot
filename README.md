@@ -62,7 +62,40 @@ Once users pass the channel check, they are shown a menu with the following butt
 
 ![bot welcome message](https://i.ibb.co/VcpnLGnJ/Screenshot-2025-04-09-16-08-48-359-org-telegram-messenger-web-edit.jpg)
 
----
+
 
 This interface is designed to be clear and beginner-friendly, while still delivering a powerful and professional experience — exactly what a Refer & Earn bot needs.
+---
+
+## 🔗 Referral Link Generation
+
+The bot includes a well-structured referral system that demonstrates how referral-based growth can be implemented cleanly within Bots.Business.
+
+When the user clicks the `📢 Refer & Earn` button, the bot edits the current message (to maintain a clean interface) and displays:
+
+- A customizable **referral preview image** (set via the admin panel)
+- The user’s **unique referral link**, auto-generated using their Telegram ID
+- The **total number of invites** they've attracted
+- The **bonus per invite** and the **reward currency**
+
+All of the above values — including the referral link prefix, bonus amount, and currency — are fully dynamic and can be managed in real-time from the **admin panel**, allowing admins to update reward logic without code changes. Default values are in place to ensure smooth operation out of the box.
+
+![Referral Link pae](https://i.ibb.co/6V5VCzW/Screenshot-2025-04-09-16-29-45-885-org-telegram-messenger-web-edit.jpg)
+
+### 🧩 Interactive Inline Buttons
+
+- **My Invites**  
+  Shows a list of users invited by the current user, the **total invite count**, and the **timestamp of the first invite**. This functionality uses the `referral-lib` for accurate tracking.
+
+- **Top List**  
+  Displays a **leaderboard** of top inviters, showing each user’s invite count. This provides a competitive incentive and transparency within the referral ecosystem.
+
+- **Copy Link**  
+  Utilizes the latest Telegram Bot API to offer a `copy_text` button, improving user convenience for sharing.
+
+- **Back**  
+  Smoothly navigates back to the previous message by editing it — enhancing the premium, app-like experience.
+
+This section showcases how a referral system can be fully implemented with dynamic configuration, clean message management, and modular control — ideal for both real-world use and educational purposes for developers learning referral systems on the Bots.Business platform.
+
 
