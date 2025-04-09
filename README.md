@@ -63,8 +63,8 @@ Once users pass the channel check, they are shown a menu with the following butt
 ![bot welcome message](https://i.ibb.co/VcpnLGnJ/Screenshot-2025-04-09-16-08-48-359-org-telegram-messenger-web-edit.jpg)
 
 
-
 This interface is designed to be clear and beginner-friendly, while still delivering a powerful and professional experience — exactly what a Refer & Earn bot needs.
+
 ---
 
 ## 🔗 Referral Link Generation
@@ -82,6 +82,7 @@ All of the above values — including the referral link prefix, bonus amount, an
 
 ![Referral Link pae](https://i.ibb.co/6V5VCzW/Screenshot-2025-04-09-16-29-45-885-org-telegram-messenger-web-edit.jpg)
 
+
 ### 🧩 Interactive Inline Buttons
 
 - **My Invites**  
@@ -97,5 +98,57 @@ All of the above values — including the referral link prefix, bonus amount, an
   Smoothly navigates back to the previous message by editing it — enhancing the premium, app-like experience.
 
 This section showcases how a referral system can be fully implemented with dynamic configuration, clean message management, and modular control — ideal for both real-world use and educational purposes for developers learning referral systems on the Bots.Business platform.
+
+---
+
+## 🛠 Help & Support
+
+When the user clicks the **Help & Support** button, the bot smoothly **edits the current message** to display a clean and customizable "About the Bot" section. This section isn't hardcoded — it can be fully updated at any time directly from the admin panel, without needing to touch the source code. This makes it ideal for dynamic projects.
+We have tow inline button `Ask a question` & `Back`for visiting last page.
+
+Clicking **Ask Question** prompts the user to explain their issue. The bot accepts **any type of message** — text, photos, videos, stickers, voice, etc. Whatever the user sends next is treated as their support request.
+
+Behind the scenes, the message is **Copied to the first admin** configured in the admin panel. The admin receives it with two inline buttons:
+- `✅ Reply`
+- `❌ Ignore`
+
+If **Ignore** is selected, the user is not notified, and the request is silently dismissed (a clean way to handle spam or non-issues).  
+If **Reply** is selected, the bot prompts the admin to send a reply in **any format** (text, photo, video, etc.), maintaining the same freedom of communication. The reply is then delivered to the user along with an `Ask Again` button so they can continue the conversation if needed.
+
+This minimal but complete support workflow gives both user and admin a premium experience — fast, controlled, and efficient — and demonstrates how even complex interactions can be implemented cleanly using Bots.Business. It's a great reference for developers learning to build support flows, thanks to its clear structure, practical use of media handling, and user/admin feedback loop.
+
+>🖼️ **Previews**
+
+ ![Help & Support Screenshot](https://i.ibb.co/FbxdXppG/Screenshot-2025-04-09-17-16-03-119-org-telegram-messenger-web-edit.jpg)
+
+![Ask a question](https://i.ibb.co/Gf2TzFf3/Screenshot-2025-04-09-17-17-48-635-org-telegram-messenger-web-edit.jpg)
+
+---
+
+## 💼 Balance & Account
+
+Clicking the **Balance & Account** button triggers a smooth in-place message edit (inline UX) that gives the user a clear summary of their referral profile. If the user runs the `/balance` command directly (without a message ID), the bot smartly sends a new standalone message — maintaining a polished experience in both contexts.
+
+The account overview includes:
+
+- **User ID**: Telegram numeric ID  
+- **Name**: Display name from Telegram  
+- **Username**: Telegram @username (if available)  
+- **Invited By**: The user who referred them (shows `None` if user joined directly)
+- **Referral Link**: User's unique invite link  
+- **Balance**: Total earned via referrals
+- **Wallet Address**: Set by the user for withdrawals (`Not Set` if they haven’t added it yet)
+
+Inline buttons included:
+- `🔗 Copy Referral Link` — copies the link using the latest Telegram API support for clipboard interaction
+- `Withdraw` — Request for an withdraw.
+- `🔙 Back` — returns to the previous interface
+
+This section gives users complete visibility into their invite stats and wallet setup without clutter or confusion.
+
+---
+
+
+
 
 
