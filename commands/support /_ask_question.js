@@ -32,7 +32,7 @@ var buttons = {
     [{ text: "🧐 Visit User Profile", url: "tg://user?id=" + user.telegramid }],
     [
       { text: "💌 Reply", callback_data: "/reply " + user.telegramid },
-      { text: "❌ Ignore", callback_data: "/ignore" }
+      { text: "❌ Ignore", callback_data: "/delete" }
     ]
   ]
 };
