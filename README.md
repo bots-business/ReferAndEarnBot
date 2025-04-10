@@ -148,6 +148,15 @@ This section gives users complete visibility into their invite stats and wallet 
 
 ---
 
+## 🎁 Periodic Bonus
+
+The **Bonus** button gives users the option to claim a periodic reward — a simple yet effective way to boost user engagement in your referral bot.
+
+When the user taps the button, the bot checks if the configured time interval since their last claim has passed. If eligible, the specified bonus amount is instantly credited to their balance. If not, they’re informed how much time is left before they can claim again.
+
+This is not limited to a daily bonus — the **claim period** and **bonus amount** are fully customizable via the **Admin Panel**. Whether it's every 1 hour, 6 hours, or 24 hours, the bot is built to adapt without any code changes.
+
+This flexible, no-frills implementation makes it ideal for showcasing real-world reward logic while keeping things simple and highly configurable for developers and admins alike.
 
 
 
