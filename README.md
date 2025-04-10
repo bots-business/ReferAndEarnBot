@@ -1,154 +1,84 @@
 # bb_affiliate_bot - chat bot
 It is repository for chat bot: [@bb_affiliate_bot](https://t.me/bb_affiliate_bot)
 
-# Refer & Earn Demo Bot
+## What it is?
+This repository can be imported to [Bots.Business](https://bots.business) as a worked chat bot.
 
-This is a simple but powerful **demo bot** built using the Bots.Business platform.  
-It includes **only the most important features** needed for a successful Refer & Earn system — nothing extra, no web app, no smart features — just what really matters.
+[Bots.Business](https://bots.business) - it is probably the first CBPaaS - Chat Bot Platform as a Service.
 
-The goal of this bot is to **demonstrate all core features** used in referral and affiliate campaigns.
+A CBPaaS is a cloud-based platform that enables developers to create chatbots without needing to build backend infrastructure.
 
-It also uses `mclib` to check if users are members of required channels before giving rewards — just like in real referral bots.
+## Create your own bot for Telegram from this Git repo
 
-This bot is **perfect for beginners** who want to learn how Refer & Earn bots work on Bots.Business.  
-It's clean, focused, and ready for real use or learning.
+How to create bot?
+1. Create bot with [@BotFather](https://telegram.me/BotFather) and take Secret Token
+2. Create bot in App and add Secret Token
+3. Add Public Key from App as [Deploy key](https://developer.github.com/v3/guides/managing-deploy-keys/#deploy-keys) with read access (and write access for bot exporting if you need it)
+4. Do import for this git repo
 
-> A complete reference for anyone who wants to build a referral bot — simple, powerful, and to the point.
+Now you can talk with yours new Telegram Bot
 
+See [more](https://help.bots.business/getting-started)
 
-## 🧑‍💻 User Interface Overview
+## Commands - in commands folder
+File name - it is command name (Bot it can be rewritten in command description)
 
-This bot offers a clean and smooth user experience with a focus on **clarity**, **ease of use**, and a **premium interactive feel** — all using the Bots.Business platform.
+Command can have: `name`, `help`, `aliases` (second names), `answer`, `keyboard`, `scnarios` (for simple logic) and other options.
 
-### 🚀 Starting the Bot
+### Command description
+It is file header:
 
-When a user starts the bot using the `/start` command, the bot checks whether the user has joined all the **required channels or groups**:
+    /*CMD
+      command: /test
+      help: this is help for ccommand
+      need_reply: [ true or false here ]
+      auto_retry_time: [ time in sec ]
+      answer: it is example answer for /test command
+      keyboard: button1, button2
+      aliases: /test2, /test3
+    CMD*/
 
-- ✅ **If the user is a member of all required channels**:  
-  They see a **welcome message** along with a clean inline button menu.
+See [more](https://help.bots.business/commands)
 
-- ❌ **If the user hasn't joined all required channels**:  
-  The bot sends a message listing the required channels to join.  
-  The list is fully dynamic — admins can manage the channels from the **admin panel** without touching the code.
+### Command body
+It is command code in JavaScript.
+Use Bot Java Script for logic in command.
 
-### 🔘 Main Menu Buttons
+For example:
+> Bot.sendMessage(2+2);
 
-Once users pass the channel check, they are shown a menu with the following buttons:
-
-- 📢 **Refer & Earn** – Get your unique invite link and track referrals.  
-- 💬 **Help & Support** – Contact admin or read basic help info.  
-- 💼 **Balance & Account** – View your current balance and invite stats.  
-- 🎁 **Bonus** – Claim periodic bonus,   
-- 🏦 **Set Wallet (Withdraw)** – Users can enter their withdrawal address or wallet.
-
-### ✨ Premium Interaction
-
-- Tapping any button **edits the current message** in place, creating a clean and modern app-like experience.
-- This editing behavior helps keep the chat uncluttered and feels similar to how premium Telegram bots work.
-- When a user sends a **command manually** (like `/bonus`), the bot replies with a **new message**, since message IDs aren’t available for editing in that case.
-
-### 🔄 Referral Flow
-
-- If a user starts the bot from a **referral link**, the bot tracks the inviter.
-- Once the new user joins all required channels, the inviter receives a **referral bonus**, defined in the admin panel.
-- Both users (inviter and invitee) receive confirmation messages about the referral status and bonuses.
-
-### ⚙️ Membership Check Modes
-
-- On `/start`, the bot checks user membership using **`MCL`** (Membership Checker Lib).
-- There is also a **background check option**:  
-  If enabled from the admin panel, the bot will check membership on **every command** automatically.  
-  > Note: This will deduct additional iterations from the admin’s Bots.Business account.
-
-![bot welcome message](https://i.ibb.co/VcpnLGnJ/Screenshot-2025-04-09-16-08-48-359-org-telegram-messenger-web-edit.jpg)
+See [more](https://help.bots.business/scenarios-and-bjs)
 
 
-This interface is designed to be clear and beginner-friendly, while still delivering a powerful and professional experience — exactly what a Refer & Earn bot needs.
+## Libraries - in libs folder
+You can store common code in the libs folder. File name - it is library name.
 
----
+For example code in myLib.js:
 
-## 🔗 Referral Link Generation
+    function hello(){ Bot.sendMessage("Hello from lib!") }
+    function goodbye(name){ Bot.sendMessage("Goodbye, " + name) }
 
-The bot includes a well-structured referral system that demonstrates how referral-based growth can be implemented cleanly within Bots.Business.
+    publish({
+      sayHello: hello,
+      sayGoodbyeTo: goodbye
+    })
 
-When the user clicks the `📢 Refer & Earn` button, the bot edits the current message (to maintain a clean interface) and displays:
+then you can run in any bot's command:
 
-- A customizable **referral preview image** (set via the admin panel)
-- The user’s **unique referral link**, auto-generated using their Telegram ID
-- The **total number of invites** they've attracted
-- The **bonus per invite** and the **reward currency**
+    Libs.myLib.hello()
+    Libs.myLib.sayGoodbyeTo("Alice")
 
-All of the above values — including the referral link prefix, bonus amount, and currency — are fully dynamic and can be managed in real-time from the **admin panel**, allowing admins to update reward logic without code changes. Default values are in place to ensure smooth operation out of the box.
+See [more](https://help.bots.business/git/library)
 
-![Referral Link pae](https://i.ibb.co/6V5VCzW/Screenshot-2025-04-09-16-29-45-885-org-telegram-messenger-web-edit.jpg)
-
-
-### 🧩 Interactive Inline Buttons
-
-- **My Invites**  
-  Shows a list of users invited by the current user, the **total invite count**, and the **timestamp of the first invite**. This functionality uses the `referral-lib` for accurate tracking.
-
-- **Top List**  
-  Displays a **leaderboard** of top inviters, showing each user’s invite count. This provides a competitive incentive and transparency within the referral ecosystem.
-
-- **Copy Link**  
-  Utilizes the latest Telegram Bot API to offer a `copy_text` button, improving user convenience for sharing.
-
-- **Back**  
-  Smoothly navigates back to the previous message by editing it — enhancing the premium, app-like experience.
-
-This section showcases how a referral system can be fully implemented with dynamic configuration, clean message management, and modular control — ideal for both real-world use and educational purposes for developers learning referral systems on the Bots.Business platform.
-
----
-
-## 🛠 Help & Support
-
-When the user clicks the **Help & Support** button, the bot smoothly **edits the current message** to display a clean and customizable "About the Bot" section. This section isn't hardcoded — it can be fully updated at any time directly from the admin panel, without needing to touch the source code. This makes it ideal for dynamic projects.
-We have tow inline button `Ask a question` & `Back`for visiting last page.
-
-Clicking **Ask Question** prompts the user to explain their issue. The bot accepts **any type of message** — text, photos, videos, stickers, voice, etc. Whatever the user sends next is treated as their support request.
-
-Behind the scenes, the message is **Copied to the first admin** configured in the admin panel. The admin receives it with two inline buttons:
-- `✅ Reply`
-- `❌ Ignore`
-
-If **Ignore** is selected, the user is not notified, and the request is silently dismissed (a clean way to handle spam or non-issues).  
-If **Reply** is selected, the bot prompts the admin to send a reply in **any format** (text, photo, video, etc.), maintaining the same freedom of communication. The reply is then delivered to the user along with an `Ask Again` button so they can continue the conversation if needed.
-
-This minimal but complete support workflow gives both user and admin a premium experience — fast, controlled, and efficient — and demonstrates how even complex interactions can be implemented cleanly using Bots.Business. It's a great reference for developers learning to build support flows, thanks to its clear structure, practical use of media handling, and user/admin feedback loop.
-
->🖼️ **Previews**
-
- ![Help & Support Screenshot](https://i.ibb.co/FbxdXppG/Screenshot-2025-04-09-17-16-03-119-org-telegram-messenger-web-edit.jpg)
-
-![Ask a question](https://i.ibb.co/Gf2TzFf3/Screenshot-2025-04-09-17-17-48-635-org-telegram-messenger-web-edit.jpg)
-
----
-
-## 💼 Balance & Account
-
-Clicking the **Balance & Account** button triggers a smooth in-place message edit (inline UX) that gives the user a clear summary of their referral profile. If the user runs the `/balance` command directly (without a message ID), the bot smartly sends a new standalone message — maintaining a polished experience in both contexts.
-
-The account overview includes:
-
-- **User ID**: Telegram numeric ID  
-- **Name**: Display name from Telegram  
-- **Username**: Telegram @username (if available)  
-- **Invited By**: The user who referred them (shows `None` if user joined directly)
-- **Referral Link**: User's unique invite link  
-- **Balance**: Total earned via referrals
-- **Wallet Address**: Set by the user for withdrawals (`Not Set` if they haven’t added it yet)
-
-Inline buttons included:
-- `🔗 Copy Referral Link` — copies the link using the latest Telegram API support for clipboard interaction
-- `Withdraw` — Request for an withdraw.
-- `🔙 Back` — returns to the previous interface
-
-This section gives users complete visibility into their invite stats and wallet setup without clutter or confusion.
-
----
+## Other bots example
+See other bots examples in the [github](https://github.com/bots-business?utf8=✓&tab=repositories&q=&type=public&language=javascript) or in the [Bot Store](https://bots.business/)
 
 
+## Other help
+[Help.bots.business](https://help.bots.business)
+
+## API
+See [API](https://api.bots.business/docs#/docs/summary)
 
 
-
+![](https://bots.business/images/web-logo.png)
