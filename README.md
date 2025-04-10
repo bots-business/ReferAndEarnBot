@@ -182,5 +182,20 @@ This implementation is designed to be simple, secure, and highly flexible — id
 
 ![Setting wallet](https://i.ibb.co/Zz8NMGLT/Screenshot-2025-04-10-10-05-22-095-org-telegram-messenger-web-edit.jpg)
 
+---
+
+## 💸 Withdraw System
+
+Users can withdraw their earnings by clicking the **Withdraw** button or sending `/withdraw <amount>`. The bot provides usage examples and enforces min/max limits, all configurable via the admin panel.
+
+Once a valid request is made:
+- Amount is instantly deducted from the user's balance.
+- Admins receive a detailed notification in the configured withdraw channel (name, amount, wallet, time).
+
+Admins have two actions:
+- ✅ **Amount Sent** – Marks as paid, notifies user, and posts to payout channel.
+- ❌ **Declined** – Marks as rejected, notifies user, and updates payout channel.
+
+After approval/rejection, the request message is edited to reflect the status, with a **Delete** button shown only to admins.
 
 
