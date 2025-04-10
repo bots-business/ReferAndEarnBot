@@ -131,6 +131,23 @@ var settingsPanel = {
   ]
 };
 
+let botCommands = [
+  { command: "/start", description: "Start the bot" },
+  { command: "/withdraw", description: "Withdraw your balance" },
+  { command: "/bonus", description: "Claim your timely bonus" },
+  { command: "/help", description: "Get support" },
+  { command: "/referral", description: "Get your referral link and details" },
+  { command: "/myreferrals", description: "Get list of your invitees" },
+  { command: "/toplist", description: "Get top inviters" },
+  { command: "/balance", description: "Get your balance and account info" },
+  { command: "/setwallet", description: "Setup your wallet" },
+  { command: "/sendbalance", description: "For admins only" },
+  { command: "/broadcast", description: "Send broadcast, for admins only" },
+  { command: "/broadcast_status", description: "For admins only, see broadcast status" }
+];
+
+Api.setMyCommands({ commands: botCommands });
+
 AdminPanel.setPanel({
   panel_name: "SETTINGS",
   data: settingsPanel,
@@ -139,3 +156,4 @@ AdminPanel.setPanel({
 
 Libs.MembershipChecker.setup();
 Bot.sendMessage("Bot settings have been successfully configured!");
+Bot.sendMessage("Bot commands have been successfully set!");
