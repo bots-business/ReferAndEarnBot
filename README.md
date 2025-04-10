@@ -17,16 +17,16 @@ It's clean, focused, and ready for real use or learning.
 
 ## Table of contents:
 
-- [User Interface](https://github.com/nasirul786/reb/blob/main/README.md#-user-interface-overview) 
-- [Referral Flow](https://github.com/nasirul786/reb/edit/main/README.md#-referral-flow)
-- [Membership checker mode](https://github.com/nasirul786/reb/edit/main/README.md#%EF%B8%8F-membership-check-modes)
-- [Referral Link generation](https://github.com/nasirul786/reb/edit/main/README.md#-referral-link-generation)
-- [Help & Support](https://github.com/nasirul786/reb/edit/main/README.md#-help--support)
-- [Balance & Account](https://github.com/nasirul786/reb/edit/main/README.md#-balance--account)
-- [Periodic bonus](https://github.com/nasirul786/reb/edit/main/README.md#-periodic-bonus)
-- [Set wallet](https://github.com/nasirul786/reb/edit/main/README.md#-set-wallet)
-- [Withdraw system](https://github.com/nasirul786/reb/edit/main/README.md#-withdraw-system)
-- [admin panel & Flexibality](https://github.com/nasirul786/reb/edit/main/README.md#%EF%B8%8F-admin-panel-complete-demonstration) 
+- [User Interface](d#-user-interface-overview) 
+- [Referral Flow](#-referral-flow)
+- [Membership checker mode](#%EF%B8%8F-membership-check-modes)
+- [Referral Link generation](#-referral-link-generation)
+- [Help & Support](#-help--support)
+- [Balance & Account](#-balance--account)
+- [Periodic bonus](#-periodic-bonus)
+- [Set wallet](#-set-wallet)
+- [Withdraw system](#-withdraw-system)
+- [admin panel & Flexibality](#%EF%B8%8F-admin-panel-complete-demonstration) 
 
 ## 🧑‍💻 User Interface Overview
 
