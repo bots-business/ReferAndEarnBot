@@ -198,4 +198,29 @@ Admins have two actions:
 
 After approval/rejection, the request message is edited to reflect the status, with a **Delete** button shown only to admins.
 
+---
+
+## ⚙️ Admin Panel: Complete Demonstration
+
+This table provides a full demonstration of how an **Admin Panel** can be integrated into a bot built on **Bots.Business (BB)**, offering **easy access to all dynamic settings** without needing to touch the bot's internal code. It showcases how developers can manage features, appearance, behavior, and logic directly through the interface.
+
+| Setting Name                     | Title / Purpose                              | Description                                                                 |
+|----------------------------------|----------------------------------------------|-----------------------------------------------------------------------------|
+| ANNOUNCEMENT_CHANNEL             | 📢 Announcement Channel                      | Payout updates will be sent automatically to this channel.                 |
+| WITHDRAW_NOTIFICATION_CHANNEL    | 🏦 Withdraw Notification Channel            | Withdrawal notifications are sent here for admin approval.                 |
+| CURRENCY                         | 💱 Currency                                  | The currency used across the bot (e.g., TRX, USDT, BTC).                   |
+| BONUS_REWARD                     | 🎁 Bonus Reward                              | The bonus amount a user receives per claim.                                |
+| BONUS_INTERVAL                   | ⏱️ Bonus Interval                            | Time duration users must wait before claiming the next bonus.              |
+| REFER_REWARD                     | 👥 Referral Reward                           | Amount credited to users per successful referral.                          |
+| ADMINS                           | 👮 Admins                                    | Comma-separated list of Telegram user IDs with admin privileges.           |
+| SUPPORT_MESSAGE                  | 🆘 Support Message                           | Markdown-formatted message shown when user clicks "Help & Support".        |
+| START_MESSAGE                    | 🚀 Start Message                             | Initial message shown on /start command.                                   |
+| ERROR_MESSAGE                    | ❌ Error Message                             | Message shown when an error occurs in the bot.                             |
+| MINIMUM_WITHDRAW                 | 💸 Minimum Withdraw                          | Smallest amount users can request to withdraw.                             |
+| MAXIMUM_WITHDRAW                 | 💰 Maximum Withdraw                          | Maximum limit for a single withdrawal.                                     |
+| REFER_LINK_PREFIX                | 🔗 Referral Link Prefix                      | Base URL used for generating referral links.                               |
+| REFER_IMAGE_URL                  | 🖼️ Referral Image URL                        | Image shown in the referral message preview.                               |
+| BACKGROUND_MEMBERSHIP_CHECKUP   | ✅ Background Membership Checkup             | Toggle for enabling/disabling background membership verification.          |
+
+> 💡 **This table reflects how powerful and developer-friendly Bots.Business can be** when it comes to building scalable and configurable Telegram bots — especially for features like Refer & Earn, Bonus Rewards, and Withdraw Systems.
 
