@@ -158,10 +158,7 @@ This is not limited to a daily bonus — the **claim period** and **bonus amount
 
 This flexible, no-frills implementation makes it ideal for showcasing real-world reward logic while keeping things simple and highly configurable for developers and admins alike.
 
----
-
-Absolutely. Here's a single, clean, and professional markdown section for the **Set Wallet** feature, perfect for contest submission:
-
+![Bonus claim](https://i.ibb.co/MxsyX10h/Screenshot-2025-04-10-10-01-48-910-org-telegram-messenger-web-edit.jpg)
 ---
 
 ## 💼 Set Wallet
@@ -176,6 +173,7 @@ Upon clicking the **Set Wallet** button, users are prompted to send the `/setwal
 
 This implementation is designed to be simple, secure, and highly flexible — ideal for developers learning how to build production-ready referral bots on the Bots.Business platform.
 
+![Setting wallet](https://i.ibb.co/Zz8NMGLT/Screenshot-2025-04-10-10-05-22-095-org-telegram-messenger-web-edit.jpg)
 
 
 
