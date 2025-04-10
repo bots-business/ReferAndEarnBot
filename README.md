@@ -158,6 +158,24 @@ This is not limited to a daily bonus — the **claim period** and **bonus amount
 
 This flexible, no-frills implementation makes it ideal for showcasing real-world reward logic while keeping things simple and highly configurable for developers and admins alike.
 
+---
+
+Absolutely. Here's a single, clean, and professional markdown section for the **Set Wallet** feature, perfect for contest submission:
+
+---
+
+## 💼 Set Wallet
+Upon clicking the **Set Wallet** button, users are prompted to send the `/setwallet` command followed by their wallet address. The bot guides them with a clear usage format:
+
+/setwallet TX8D1vExampleWalletAddress
+
+- 💡 **Default Wallet Type**: `TRX (TRC20)`
+- ⚙️ **Fully Configurable**: The currency type and wallet requirement can be adjusted from the **Admin Panel**, making the system adaptable for USDT, BNB, or any token of your choice.
+- 🔐 **Wallet Usage**: The saved wallet is linked to the user's account and is used when processing withdrawals.
+- 🔁 **Change Anytime**: Users can update their wallet simply by sending the command again with a new address.
+
+This implementation is designed to be simple, secure, and highly flexible — ideal for developers learning how to build production-ready referral bots on the Bots.Business platform.
+
 
 
 
