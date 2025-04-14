@@ -17,17 +17,18 @@ It's clean, focused, and ready for real use or learning.
 
 ## Table of contents:
 
-- [User Interface](d#-user-interface-overview) 
-- [Referral Flow](#-referral-flow)
-- [Membership checker mode](#%EF%B8%8F-membership-check-modes)
-- [Referral Link generation](#-referral-link-generation)
-- [Help & Support](#-help--support)
-- [Balance & Account](#-balance--account)
+- [User Interface](d#-user-interface-overview) (Rule 4.2)
+- [Referral Flow](#-referral-flow) (Rule 2.4)
+- [Membership checker mode](#%EF%B8%8F-membership-check-modes) (Rule 2.1)
+- [Referral Link generation](#-referral-link-generation) (Rule 2.4)
+- [Help & Support](#-help--support) (Rule 2.8)
+- [Balance & Account](#-balance--account) (Rule 2.2)
 - [Transaction history](#transaction-history)
-- [Periodic bonus](#-periodic-bonus)
-- [Set wallet](#-set-wallet)
-- [Withdraw system](#-withdraw-system)
-- [admin panel & Flexibality](#%EF%B8%8F-admin-panel--flexibality) 
+- [Periodic bonus](#-periodic-bonus) (Rule 2.5)
+- [Set wallet](#-set-wallet) (part of Rule 2.3)
+- [Broadcasting](#broadcasting) (Rule 3.4)
+- [Withdraw system](#-withdraw-system) (Rules - 2.3, 3.3)
+- [admin panel & Flexibality](#%EF%B8%8F-admin-panel--flexibality)  (Rules - 3.2, 3.5, 4.3)
 
 ## 🧑‍💻 User Interface Overview
 
