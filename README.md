@@ -314,8 +314,10 @@ This section guides you through setting up the Telegram bot for optimal function
    | `/sendbalance`         | For admins only                          |
    | `/broadcast`           | Send broadcast, for admins only          |
    | `/broadcast_status`    | For admins only, see broadcast status    |
+   | `/ban`                 | Ban any user, (`/ban 123457`)            |
+   | `/unban`               | Unban any user, (`/unban 1352464`)       |
 
-3. **Configure the Admin Panel**  
+4. **Configure the Admin Panel**  
    - Navigate to the **Admin Panel** section in your bot.  
    - You will see two panels. Open the **Membership Checker Options** panel.  
    - Fill in the following fields:  
@@ -329,7 +331,7 @@ This section guides you through setting up the Telegram bot for optimal function
    | `onAllJoining`            | `/joinedAll`       | Triggers when the user joins all required channels.                         |
    | `onError`                 | `/mclibError`      | Triggers on errors from MCLib.                                              |
 
-4. **Additional Configurations**  
+5. **Additional Configurations**  
    - Configure the following in the admin panel:  
      - Admins list.  
      - Withdraw notification settings.  
