@@ -28,6 +28,7 @@ It's clean, focused, and ready for real use or learning.
 - [Set wallet](#-set-wallet) (part of Rule 2.3)
 - [Broadcasting](#broadcasting) (Rule 3.4)
 - [Withdraw system](#-withdraw-system) (Rules - 2.3, 3.3)
+- [Ban & Unban](#ban--unban) (Rule 3.1) 
 - [admin panel & Flexibality](#%EF%B8%8F-admin-panel--flexibality)  (Rules - 3.2, 3.5, 4.3)
 
 ## 🧑‍💻 User Interface Overview
@@ -231,6 +232,23 @@ Admins have two actions:
 After approval/rejection, the request message is edited to reflect the status, with a **Delete** button shown only to admins.
 
 ---
+
+# Ban & Unban
+
+Admins can manage user access using the following commands:
+
+- **Ban**: `/ban <user_tgid>`  
+  - Only admins can ban a user.  
+  - Prevents the user from using the bot, stopping them before any command (denoted by `@`).  
+
+- **Unban**: `/unban <user_tgid>`  
+  - Only admins can unban a user.  
+  - Restores the user's ability to use the bot fully.
+
+Use the user's Telegram ID (`user_tgid`) to execute these commands at any time.
+
+---
+
 
 ## ⚙️ Admin Panel & Flexibality
 
