@@ -23,7 +23,7 @@ It's clean, focused, and ready for real use or learning.
 - [Referral Link generation](#-referral-link-generation) (Rule 2.4)
 - [Help & Support](#-help--support) (Rule 2.8)
 - [Balance & Account](#-balance--account) (Rule 2.2)
-- [Transaction history](#transaction-history)
+- [Transaction history](#transaction-history) (Part of 2.2)
 - [Periodic bonus](#-periodic-bonus) (Rule 2.5)
 - [Set wallet](#-set-wallet) (part of Rule 2.3)
 - [Broadcasting](#broadcasting) (Rule 3.4)
