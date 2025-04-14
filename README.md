@@ -238,7 +238,31 @@ This table provides a full demonstration of how an **Admin Panel** can be integr
 
 > 💡 **This table reflects how powerful and developer-friendly Bots.Business can be** when it comes to building scalable and configurable Telegram bots — especially for features like Refer & Earn, Bonus Rewards, and Withdraw Systems.
 
+---
 
+# Broadcasting
+
+The broadcasting feature allows admins to send messages of any type to all users securely using the powerful BB method: `Bot.runAll`. This feature is exclusive to admins for enhanced security.
+
+## How It Works
+
+ - An admin sends any type of message to the bot (e.g., text, image, GIF, sticker, or manually formatted text).
+ - Reply to the sent message with the `/broadcast` command.  
+ - The bot will copy and send the message to all users.
+
+ **Benefits**  
+   - Supports all message types, including manually formatted text, images, GIFs, stickers, and more.  
+   - Ensures a seamless and flexible broadcasting experience.
+
+4. **Broadcast Status**  
+   - After initiating a broadcast, the admin receives an instant response with broadcast details.  
+   - The broadcast ID is saved as the "last broadcast."  
+   - To check the progress, the admin can run `/broadcast_status` to view the status and completion progress of the broadcast.
+
+![Broadcast Preview](https://i.ibb.co/SX56kPL7/7o-I1it-Th-Cqzi.jpg)  
+*Example preview of a broadcast message being sent to users.*
+
+---
 
 ## Setup Process
 This section guides you through setting up the Telegram bot for optimal functionality. Follow these steps carefully to ensure the bot is configured correctly for the contest submission.
