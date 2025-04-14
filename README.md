@@ -238,3 +238,64 @@ This table provides a full demonstration of how an **Admin Panel** can be integr
 
 > 💡 **This table reflects how powerful and developer-friendly Bots.Business can be** when it comes to building scalable and configurable Telegram bots — especially for features like Refer & Earn, Bonus Rewards, and Withdraw Systems.
 
+
+
+## Setup Process
+This section guides you through setting up the Telegram bot for optimal functionality. Follow these steps carefully to ensure the bot is configured correctly for the contest submission.
+
+
+1. **Clone the Bot**  
+   - Clone the bot from the [GitHub repository](insert-repo-link) or download it from the BB Demo Bot Store (if available).
+
+2. **Launch the Bot**  
+   - Use your bot token to launch the bot.  
+   - Run the `/setup` command to initialize the bot.  
+     - This will:  
+       - Set all required commands using `setMyCommands` (see the table below for the full list of commands).  
+       - Configure the admin panel for further customization.  
+       - Initialize MCLib for membership checking.
+
+   **Commands Set During Setup**  
+   The following commands are configured automatically via `setMyCommands`:
+
+   | Command                | Description                              |
+   |------------------------|------------------------------------------|
+   | `/start`               | Start the bot                            |
+   | `/withdraw`            | Withdraw your balance                    |
+   | `/bonus`               | Claim your timely bonus                  |
+   | `/help`                | Get support                              |
+   | `/referral`            | Get your referral link and details       |
+   | `/myreferrals`         | Get list of your invitees                |
+   | `/toplist`             | Get top inviters                         |
+   | `/balance`             | Get your balance and account info        |
+   | `/setwallet`           | Setup your wallet                        |
+   | `/sendbalance`         | For admins only                          |
+   | `/broadcast`           | Send broadcast, for admins only          |
+   | `/broadcast_status`    | For admins only, see broadcast status    |
+
+3. **Configure the Admin Panel**  
+   - Navigate to the **Admin Panel** section in your bot.  
+   - You will see two panels. Open the **Membership Checker Options** panel.  
+   - Fill in the following fields:  
+     - **Channels Chat IDs**: Enter the chat IDs of required channels, separated by commas.  
+     - Configure the membership checker commands as shown in the table below:
+
+   | Field                     | Command            | Description                                                                 |
+   |---------------------------|--------------------|-----------------------------------------------------------------------------|
+   | `onNeedJoining`           | `/needJoinAll`     | Triggers if the user is not a member of any required channel.               |
+   | `onJoining`               | `/justJoinedOne`   | Triggers when the user joins any of the required channels.                  |
+   | `onAllJoining`            | `/joinedAll`       | Triggers when the user joins all required channels.                         |
+   | `onError`                 | `/mclibError`      | Triggers on errors from MCLib.                                              |
+
+4. **Additional Configurations**  
+   - Configure the following in the admin panel:  
+     - Admins list.  
+     - Withdraw notification settings.  
+     - Payout announcement channels.  
+     - Other settings as needed.  
+   - Refer to [this table](insert-link) for a complete list of modifications available in the admin panel.
+
+> **Note**: Only the **first admin** listed in the admin panel will receive support messages from users.
+
+By following these steps, your bot will be fully set up and ready for the production.
+
