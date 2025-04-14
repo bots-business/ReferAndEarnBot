@@ -26,7 +26,7 @@ It's clean, focused, and ready for real use or learning.
 - [Periodic bonus](#-periodic-bonus)
 - [Set wallet](#-set-wallet)
 - [Withdraw system](#-withdraw-system)
-- [admin panel & Flexibality](#%EF%B8%8F-admin-panel-complete-demonstration) 
+- [admin panel & Flexibality](#%EF%B8%8F-admin-panel--flexibality) 
 
 ## 🧑‍💻 User Interface Overview
 
@@ -133,13 +133,15 @@ This minimal but complete support workflow gives both user and admin a premium e
 
  ![Help & Support Screenshot](https://i.ibb.co/FbxdXppG/Screenshot-2025-04-09-17-16-03-119-org-telegram-messenger-web-edit.jpg)
 
-![Ask a question](https://i.ibb.co/Gf2TzFf3/Screenshot-2025-04-09-17-17-48-635-org-telegram-messenger-web-edit.jpg)
+![Ask a question](https://i.ibb.co/RpHL6M5W/YWIl-Hb1j-Fg-Tu.jpg)
 
 
 admin replying
 
 
-![admis replying](https://i.ibb.co/zTdVMYg6/IMG-20250410-101728-167.jpg)
+![admis replying](https://i.ibb.co/1JTvWfjk/qzbax-JRm7-Ar-C.jpg)
+
+![Admin reply](https://i.ibb.co/pvKGfMfx/1-U7-ZQCQp-Jz-JM.jpg)
 
 
 ---
@@ -212,7 +214,7 @@ After approval/rejection, the request message is edited to reflect the status, w
 
 ---
 
-## ⚙️ Admin Panel: Complete Demonstration
+## ⚙️ Admin Panel & Flexibality
 
 This table provides a full demonstration of how an **Admin Panel** can be integrated into a bot built on **Bots.Business (BB)**, offering **easy access to all dynamic settings** without needing to touch the bot's internal code. It showcases how developers can manage features, appearance, behavior, and logic directly through the interface.
 
