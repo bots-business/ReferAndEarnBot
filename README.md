@@ -17,10 +17,10 @@ It's clean, focused, and ready for real use or learning.
 
 ## Table of contents:
 
-- [User Interface](d#-user-interface-overview) (Rule 4.2)
+- [User Interface](d#-user-interface-overview) (Rule 4.2, 2.7)
 - [Referral Flow](#-referral-flow) (Rule 2.4)
 - [Membership checker mode](#%EF%B8%8F-membership-check-modes) (Rule 2.1)
-- [Referral Link generation](#-referral-link-generation) (Rule 2.4)
+- [Referral Link generation](#-referral-link-generation) (Rule 2.4, 2.7)
 - [Help & Support](#-help--support) (Rule 2.8)
 - [Balance & Account](#-balance--account) (Rule 2.2)
 - [Transaction history](#transaction-history) (Part of 2.2)
@@ -45,6 +45,8 @@ When a user starts the bot using the `/start` command, the bot checks whether th
 - ❌ **If the user hasn't joined all required channels**:  
   The bot sends a message listing the required channels to join.  
   The list is fully dynamic — admins can manage the channels from the **admin panel** without touching the code.
+
+  Acording to the rule 2.7, the bot shows total users at the starting page, other statics like toplist and referral performance are placed on "referral" link page,
 
 ### 🔘 Main Menu Buttons
 
