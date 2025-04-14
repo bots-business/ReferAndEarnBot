@@ -186,6 +186,9 @@ The history displays:
 - **Date** of transaction
 - **Status** (e.g., completed, pending)
 
+![image of history](https://i.ibb.co/Ps6sHYcx/o-Dh1-RSzug-ZUu.jpg)
+
+_Tested_
 ---
 
 ## 🎁 Periodic Bonus
