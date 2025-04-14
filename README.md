@@ -23,6 +23,7 @@ It's clean, focused, and ready for real use or learning.
 - [Referral Link generation](#-referral-link-generation)
 - [Help & Support](#-help--support)
 - [Balance & Account](#-balance--account)
+- [Transaction history](#transaction-history)
 - [Periodic bonus](#-periodic-bonus)
 - [Set wallet](#-set-wallet)
 - [Withdraw system](#-withdraw-system)
@@ -163,9 +164,25 @@ The account overview includes:
 Inline buttons included:
 - `🔗 Copy Referral Link` — copies the link using the latest Telegram API support for clipboard interaction
 - `Withdraw` — Request for an withdraw.
+- `Trabsaction history` - 15 most recent withdraw history
 - `🔙 Back` — returns to the previous interface
 
 This section gives users complete visibility into their invite stats and wallet setup without clutter or confusion.
+
+---
+
+# Transaction History
+
+Users can view their 15 most recent withdrawal transactions by:
+
+1. Sending the `/history` command.  
+2. Clicking the **Transaction History** button on the **Balance & Account** page.
+
+The history displays:
+- **Amount** withdrawn
+- **Wallet** details
+- **Date** of transaction
+- **Status** (e.g., completed, pending)
 
 ---
 
