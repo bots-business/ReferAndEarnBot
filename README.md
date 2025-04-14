@@ -366,3 +366,16 @@ This section guides you through setting up the Telegram bot for optimal function
 
 By following these steps, your bot will be fully set up and ready for the production.
 
+---
+
+# Fully Ready for Demo
+
+The bot is designed to be demo-ready out of the box, ensuring a smooth experience even without initial configuration. Below are the key features that make this possible:
+
+- **Default Configurations**: All settings come with default values, eliminating errors if the bot is run without manual setup.  
+- **Comprehensive Error Handling**:  
+  - Every possible error scenario is covered with robust fallbacks.  
+  - MCLib errors are handled via the `/mclibError` command.  
+  - If the admin list is empty, the support system will inform user about this.  
+  - If no admin channel is set for withdrawal requests, Bot will notify user stop withdraw functions.  
+- **Extensive Fallbacks**: The bot anticipates and addresses nearly every edge case, ensuring seamless operation during demos.
