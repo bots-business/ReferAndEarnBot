@@ -26,7 +26,7 @@ var username = user.username ? "@" + user.username : "No username";
 var inviter = RefLib.getAttractedBy();
 var inviteLink = Libs.ReferralLib.getRefLink(bot.name, linkPrefix);
 var balance = Libs.ResourcesLib.userRes("balance").value().toFixed(2);
-var walletAddress = User.getProperty("wallet") || "Not Set";
+var walletAddress = Bot.getProp("wallet"+user.telegramid) || "Not Set";
 
 
 // Prepare message content
@@ -46,6 +46,7 @@ var buttons = {
   inline_keyboard: [
     [{ text: "🔗 Copy Invite Link", copy_text: {text: inviteLink}}],
     [{ text: "💸 Withdraw", callback_data: "/withdraw" }],
+    [{ text: "⌛ Transaction History", callback_data: "/history" }],
     [{ text: "🔙 Back", callback_data: "/start" }]
   ]
 };

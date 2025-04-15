@@ -39,7 +39,7 @@ if (!task_id) {
 
 let task = new RunAllTask({ id: task_id });
 Api.sendMessage({
-    text: `Broadcast task status:\n\n<b>Task ID:</b> ${task.id}\n<b>Current Position:</b> ${task.cur_position}\n<b>Status Code:</b> ${task.status_code}\n<b>Progress:</b> ${task.progress}%\n<b>Created At:</b> ${task.created_at}\n<b>Total:</> ${task.total}\n<b>Speed:</> ${task.speed}\n\n<b>Status:</b> ${task.status}`,
+    text: `<blockquote>Last Broadcast task status:</>\n\n<b>Task ID:</b> ${task.id}\n<b>Current Position:</b> ${task.cur_position}\n<b>Status Code:</b> ${task.status_code}\n<b>Progress:</b> ${task.progress}%\n<b>Created At:</b> ${task.created_at}\n<b>Total:</> ${task.total}\n<b>Speed:</> ${task.speed}\n\n<b>Status:</b> ${task.status}`,
     parse_mode: "HTML",
     reply_to_message_id: request.message_id
 });

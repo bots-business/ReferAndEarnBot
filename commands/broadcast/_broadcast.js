@@ -45,6 +45,7 @@ if (!chat || chat.chat_type !== "private") {
   
   Bot.runAll({
     command: "/news",
+    for_chats: "private-chats",
     on_create: "/broadcast_created",
     options: {
       chat_id: chat_id,

@@ -19,7 +19,7 @@ CMD*/
 var values = AdminPanel.getPanelValues("SETTINGS");
 var minimumWithdraw = values.MINIMUM_WITHDRAW || 5; //default minimum withdraw amount
 var maximumWithdraw = values.MAXIMUM_WITHDRAW || 100; //default maximum withdraw amount
-var wallet = User.getProperty("wallet");
+var wallet = Bot.getProp("wallet"+user.telegramid);
 var ntificationChannel = values.WITHDRAW_NOTIFICATION_CHANNEL;
 let userRes = Libs.ResourcesLib.userRes("balance");
 var withdrawMessage = `To withdraw balance please send /withdraw command followed by the amount. \n\n<b>For Example:</b> \n<code>/withdraw 100</code> \n\nYou can withdraw a minimum of ${minimumWithdraw} and a maximum of ${maximumWithdraw}.`;
@@ -114,7 +114,7 @@ Api.sendMessage({
     reply_markup: {
         inline_keyboard: [
             [
-                { text: "✅ Amount Sent", callback_data: `/approve ${requestId} ${user.telegramid}` },
+                { text: "✅ Amount Sent", callback_data: `/approve ${requestId} ${user.telegramid} ${amount}` },
                 { text: "❌ Decline", callback_data: `/decline ${requestId} ${user.telegramid}` }
             ]
         ]

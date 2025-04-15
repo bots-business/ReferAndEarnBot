@@ -40,7 +40,7 @@ if (!textRegex.test(params)) {
     return;
 }
 
-User.setProp("wallet", params);
+Bot.setProp("wallet"+user.telegramid, params);
 Api.sendMessage({
     text: "✅ Wallet address saved successfully!\n\n" + params,
     parse_mode: "html"
