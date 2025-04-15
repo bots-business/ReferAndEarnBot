@@ -143,7 +143,9 @@ let botCommands = [
   { command: "/setwallet", description: "Setup your wallet" },
   { command: "/sendbalance", description: "For admins only" },
   { command: "/broadcast", description: "Send broadcast, for admins only" },
-  { command: "/broadcast_status", description: "For admins only, see broadcast status" }
+  { command: "/broadcast_status", description: "For admins only, see broadcast status" },
+  { command: "/ban", description: "Ban users, for admins only"},
+  { command: "/unban", description: "Unban user, for admins only}
 ];
 
 Api.setMyCommands({ commands: botCommands });
