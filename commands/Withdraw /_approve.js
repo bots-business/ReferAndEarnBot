@@ -35,7 +35,7 @@ var messageId = request.message.message_id;
 if (!messageId) {return}
 
 // check if params is provided
-let [requestId, userId] = params.split(" ");
+let [requestId, userId, amount] = params.split(" ");
 if (!requestId || !userId) {
     return;
 }
@@ -78,6 +78,25 @@ Api.editMessageText({
         [{ text: "🗑️ Delete", callback_data: "/delete"}]
       ]
       }
+    });
+
+    function getCurrentDate() {
+      var d = new Date();
+      var year = d.getFullYear();
+      var month = String(d.getMonth() + 1).padStart(2, "0");
+      var day = String(d.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    
+    // save withdraw history
+    let userWallet = Bot.getProp("wallet"+userId);
+    // we have function to get and set withdrawal history on @ command
+    history.add(userId, {
+      amount: amount,
+      wallet: userWallet,
+      date: getCurrentDate(),
+      status: "Success"
     });
 
     // delete the request info from bot props

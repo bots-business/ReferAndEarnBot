@@ -19,6 +19,13 @@ CMD*/
 // Get bot settings from admin panel
 var values = AdminPanel.getPanelValues("SETTINGS");
 var linkPrefix = values.REFER_LINK_PREFIX || "Bot"
+var totalUser = Libs.ResourcesLib.anotherChatRes("totalUser", "global");
+
+// if user is new, add to total users.
+if (chat && chat.just_created === true) {
+  totalUser.add(1);
+}
+
 // Run referral tracking at the top
 var tracks = {
   onTouchOwnLink: function () {
@@ -119,13 +126,13 @@ let buttons = {
 if (request.message?.message_id) {
   Api.editMessageText({
     message_id: request.message.message_id,
-    text: messageContent,
+    text: messageContent+"\n\n*Total Users:* "+totalUser.value(),
     parse_mode: "Markdown",
     reply_markup: buttons
   });
 } else {
   Api.sendMessage({
-    text: messageContent,
+    text: messageContent+"\n\n*Total Users:* "+totalUser.value(),
     parse_mode: "Markdown",
     reply_markup: buttons
   });
