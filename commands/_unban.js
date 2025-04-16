@@ -23,7 +23,7 @@ if (!admins || !admins.split(",").map(e => e.trim()).includes(user.telegramid.to
 }
 
 if (!params) {
-    return Bot.sendMessage('To block a user, please send "`/unban [user_id]`"\n\n*Example:*\n`/unban 124643754`');
+    return Bot.sendMessage('To unban a an user, please send "`/unban [user_id]`"\n\n*Example:*\n`/unban 124643754`');
   }
   
   if (!/^\d+$/.test(params)) {
