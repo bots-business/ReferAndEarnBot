@@ -30,6 +30,7 @@ It's clean, focused, and ready for real use or learning.
 - [Withdraw system](#-withdraw-system) (Rules - 2.3, 3.3)
 - [Ban & Unban](#ban--unban) (Rule 3.1) 
 - [admin panel & Flexibality](#%EF%B8%8F-admin-panel--flexibality)  (Rules - 3.2, 3.5, 4.3)
+- [Setup](#setup-process) 
 
 ## 🧑‍💻 User Interface Overview
 
@@ -310,7 +311,7 @@ This section guides you through setting up the Telegram bot for optimal function
 
 
 1. **Clone the Bot**  
-   - Clone the bot from the [GitHub repository](insert-repo-link) or download it from the BB Demo Bot Store (if available).
+   - Clone the bot from the GitHub repository or download it from the BB Demo Bot Store (if available).
 
 2. **Launch the Bot**  
    - Use your bot token to launch the bot.  
@@ -360,7 +361,7 @@ This section guides you through setting up the Telegram bot for optimal function
      - Withdraw notification settings.  
      - Payout announcement channels.  
      - Other settings as needed.  
-   - Refer to [this table](insert-link) for a complete list of modifications available in the admin panel.
+   - Refer to Flexibility for a complete list of modifications available in the admin panel.
 
 > **Note**: Only the **first admin** listed in the admin panel will receive support messages from users.
 
