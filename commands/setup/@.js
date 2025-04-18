@@ -24,9 +24,9 @@ if (chat && (chat.chat_type === "group" || chat.chat_type === "supergroup")) {
 
 //Background membership checkup can be configured in the admin panel
 // If you have enough iterations, turn it on
-var values = AdminPanel.getPanelValues("SETTINGS");
+var value = AdminPanel.getPanelValues("SETTINGS");
 
-var backgroundCheck = values.BACKGROUND_MEMBERSHIP_CHECKUP;
+var backgroundCheck = value.BACKGROUND_MEMBERSHIP_CHECKUP;
 
 if (backgroundCheck === true && chat && chat.chat_type === "private") {
     Libs.MembershipChecker.handle();
@@ -52,7 +52,7 @@ var history = {
   }
 };
 
-var banned = Bot.getProp(user.telegramid);
+var banned = Bot.getProp(user?.telegramid);
 if (banned === "blocked") {
   Bot.sendMessage("❌ You are blocked by the admin.");
   return;
