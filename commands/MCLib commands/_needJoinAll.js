@@ -1,8 +1,8 @@
 /*CMD
   command: /needJoinAll
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
+  auto_retry_time:
   folder: MCLib commands
 
   <<ANSWER
@@ -12,12 +12,14 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases: 
-  group: 
+  aliases:
+  group:
 CMD*/
 
-if(!options){ return } // protect from manual run
+if (!options) {
+  return;
+} // protect from manual run
 
 let channels = Libs.MembershipChecker.getChats();
 
-Bot.sendMessage("Please join to our channels " + channels) //send all required channels to user
+Bot.sendMessage("Please join to our channels " + channels); //send all required channels to user

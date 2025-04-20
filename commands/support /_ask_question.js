@@ -16,13 +16,17 @@ CMD*/
 var admins = SETTINGS.ADMINS;
 
 if (!admins) {
-  Bot.sendMessage("❌ No admins found. If you're the owner of this bot, please set the admins in the admin panel.");
+  Bot.sendMessage(
+    "❌ No admins found. If you're the owner of this bot, please set the admins in the admin panel."
+  );
   return;
 }
 
-var adminList = admins.split(",").map(a => a.trim());
+var adminList = admins.split(",").map((a) => a.trim());
 if (adminList.length === 0 || !adminList[0]) {
-  Bot.sendMessage("❌ Admin list is empty. Please add valid Telegram IDs in the admin panel.");
+  Bot.sendMessage(
+    "❌ Admin list is empty. Please add valid Telegram IDs in the admin panel."
+  );
   return;
 }
 
@@ -31,17 +35,18 @@ var buttons = {
     [{ text: "🧐 Visit User Profile", url: "tg://user?id=" + user.telegramid }],
     [
       { text: "💌 Reply", callback_data: "/reply " + user.telegramid },
-      { text: "❌ Ignore", callback_data: "/delete" }
-    ]
-  ]
+      { text: "❌ Ignore", callback_data: "/delete" },
+    ],
+  ],
 };
 
 Api.copyMessage({
   from_chat_id: user.telegramid,
   message_id: request?.message_id,
   chat_id: adminList[0],
-  reply_markup: buttons
+  reply_markup: buttons,
 });
 
-Bot.sendMessage("✅ Your message has been sent to the admin. They'll get back to you shortly.");
-
+Bot.sendMessage(
+  "✅ Your message has been sent to the admin. They'll get back to you shortly."
+);

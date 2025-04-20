@@ -1,8 +1,8 @@
 /*CMD
   command: /news
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
+  auto_retry_time:
   folder: broadcast
 
   <<ANSWER
@@ -12,14 +12,15 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases: 
-  group: 
+  aliases:
+  group:
 CMD*/
 
-if (!options) {return}
+if (!options) {
+  return;
+}
 
 Api.copyMessage({
-    from_chat_id: options.chat_id,
-    message_id: options.message_id
+  from_chat_id: options.chat_id,
+  message_id: options.message_id,
 });
-

@@ -16,7 +16,7 @@
   group:
 CMD*/
 
-var linkPrefix = SETTINGS.REFER_LINK_PREFIX || "Bot"
+var linkPrefix = SETTINGS.REFER_LINK_PREFIX || "Bot";
 var totalUser = Libs.ResourcesLib.anotherChatRes("totalUser", "global");
 
 // if user is new, add to total users.
@@ -33,12 +33,12 @@ var tracks = {
   onAtractedByUser: function (byUser) {
     Api.sendMessage({
       text: `🎁 You are invited by <a href='tg://user?id=${byUser.telegramid}'>${byUser.first_name}</a>`,
-      parse_mode: "HTML"
+      parse_mode: "HTML",
     });
     Api.sendMessage({
       chat_id: byUser.telegramid,
       text: `🎉 You have successfully invited <a href='tg://user?id=${user.telegramid}'>${user.first_name}</a>`,
-      parse_mode: "HTML"
+      parse_mode: "HTML",
     });
   },
 
@@ -46,10 +46,9 @@ var tracks = {
     Bot.sendMessage("*🚫 You Have Already Started The Bot!*");
   },
 
-  linkPrefix: linkPrefix
+  linkPrefix: linkPrefix,
 };
 RefLib.track(tracks);
-
 
 // Check and get not joined chats if available
 let chats = Libs.MembershipChecker.getNotJoinedChats();
@@ -66,17 +65,25 @@ if (!isMember) {
   for (var i = 0; i < chatArray.length; i += 2) {
     let row = [];
     if (chatArray[i]) {
-      row.push({ text: chatArray[i], url: "https://t.me/" + chatArray[i].replace("@", "") });
+      row.push({
+        text: chatArray[i],
+        url: "https://t.me/" + chatArray[i].replace("@", ""),
+      });
     }
     if (chatArray[i + 1]) {
-      row.push({ text: chatArray[i + 1], url: "https://t.me/" + chatArray[i + 1].replace("@", "") });
+      row.push({
+        text: chatArray[i + 1],
+        url: "https://t.me/" + chatArray[i + 1].replace("@", ""),
+      });
     }
     inlineKeyboard.push(row);
   }
 
   inlineKeyboard.push([{ text: "✅ Joined", callback_data: "/start" }]);
 
-  var msg = values.NEED_JOIN_MSG || `
+  var msg =
+    values.NEED_JOIN_MSG ||
+    `
 📢 *Join Required Channels!*
 
 To continue using this bot, please join all the required channels below:
@@ -84,7 +91,7 @@ To continue using this bot, please join all the required channels below:
   Api.sendMessage({
     text: msg,
     parse_mode: "Markdown",
-    reply_markup: { inline_keyboard: inlineKeyboard }
+    reply_markup: { inline_keyboard: inlineKeyboard },
   });
   return;
 }
@@ -93,11 +100,13 @@ To continue using this bot, please join all the required channels below:
 let inviter = RefLib.getAttractedBy();
 if (inviter && !User.getProperty("rewarded")) {
   let referralBonus = parseFloat(values.REFER_REWARD) || 0.5;
-  Libs.ResourcesLib.anotherUserRes("balance", inviter.telegramid).add(referralBonus);
+  Libs.ResourcesLib.anotherUserRes("balance", inviter.telegramid).add(
+    referralBonus
+  );
   Api.sendMessage({
     chat_id: inviter.telegramid,
     text: `🎉 You have received a referral bonus of *${referralBonus} ${values.CURRENCY}* for inviting ${user.first_name}!`,
-    parse_mode: "Markdown"
+    parse_mode: "Markdown",
   });
   User.setProperty("rewarded", true);
 }
@@ -115,24 +124,29 @@ Invite your friends to join our community and earn rewards for each referral. �
 let buttons = {
   inline_keyboard: [
     [{ text: "🔗 Refer & Earn", callback_data: "/referral" }],
-    [{ text: "📞 Help & Support", callback_data: "/help" }, { text: "💰 Balance & Account", callback_data: "/balance" }],
-    [{ text: "🎁 Bonus", callback_data: "/bonus"}, { text: "💳 Set wallet", callback_data: "/setwallet"}],
-    [{ text: "🏦 Withdraw", callback_data: "/withdraw" }]
-  ]
+    [
+      { text: "📞 Help & Support", callback_data: "/help" },
+      { text: "💰 Balance & Account", callback_data: "/balance" },
+    ],
+    [
+      { text: "🎁 Bonus", callback_data: "/bonus" },
+      { text: "💳 Set wallet", callback_data: "/setwallet" },
+    ],
+    [{ text: "🏦 Withdraw", callback_data: "/withdraw" }],
+  ],
 };
 
 if (request.message?.message_id) {
   Api.editMessageText({
     message_id: request.message.message_id,
-    text: messageContent+"\n\n*Total Users:* "+totalUser.value(),
+    text: messageContent + "\n\n*Total Users:* " + totalUser.value(),
     parse_mode: "Markdown",
-    reply_markup: buttons
+    reply_markup: buttons,
   });
 } else {
   Api.sendMessage({
-    text: messageContent+"\n\n*Total Users:* "+totalUser.value(),
+    text: messageContent + "\n\n*Total Users:* " + totalUser.value(),
     parse_mode: "Markdown",
-    reply_markup: buttons
+    reply_markup: buttons,
   });
 }
-

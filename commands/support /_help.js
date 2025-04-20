@@ -17,7 +17,9 @@
 CMD*/
 
 // Help message content
-var helpMessage = SETTINGS.SUPPORT_MESSAGE || `ℹ️ *Bot Information:*
+var helpMessage =
+  SETTINGS.SUPPORT_MESSAGE ||
+  `ℹ️ *Bot Information:*
 
 🤖 *This is a Refer and Earn Bot.*
 ⚡️ Refer your friends to this bot to earn TRX.
@@ -32,8 +34,8 @@ var helpMessage = SETTINGS.SUPPORT_MESSAGE || `ℹ️ *Bot Information:*
 var buttons = {
   inline_keyboard: [
     [{ text: "❓ Ask a Question", callback_data: "/ask_question" }],
-    [{ text: "🔙 Back", callback_data: "/start" }]
-  ]
+    [{ text: "🔙 Back", callback_data: "/start" }],
+  ],
 };
 
 // edit message if message_id is available
@@ -42,13 +44,12 @@ if (request.message?.message_id) {
     message_id: request.message.message_id,
     text: helpMessage,
     parse_mode: "Markdown",
-    reply_markup: buttons
+    reply_markup: buttons,
   });
 } else {
   Api.sendMessage({
     text: helpMessage,
     parse_mode: "Markdown",
-    reply_markup: buttons
+    reply_markup: buttons,
   });
 }
-

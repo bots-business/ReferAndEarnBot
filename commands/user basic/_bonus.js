@@ -29,7 +29,7 @@ if (lastClaimTime) {
     let remainingTime = (interval - timeDifference).toFixed(2);
     Api.sendMessage({
       text: `⏳ You can claim your next bonus after ${remainingTime} hours.`,
-      parse_mode: "Markdown"
+      parse_mode: "Markdown",
     });
     return;
   }
@@ -44,7 +44,8 @@ User.setProperty("claimTime", currentTime, "integer");
 
 // Send confirmation message
 Api.sendMessage({
-    text: `🎉 You have successfully claimed your ${bonusAmount} ${values.CURRENCY || "TRX"} bonus!\n\n💰 Current Balance: ${balance.value()}`,
-    parse_mode: "Markdown"
+  text: `🎉 You have successfully claimed your ${bonusAmount} ${
+    values.CURRENCY || "TRX"
+  } bonus!\n\n💰 Current Balance: ${balance.value()}`,
+  parse_mode: "Markdown",
 });
-
