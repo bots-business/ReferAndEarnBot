@@ -23,4 +23,8 @@ if (!/^\d+$/.test(params)) {
 }
 
 Bot.setProp(params, "blocked");
-Bot.sendMessage("✅ User blocked: " + params, { is_reply: true });
+
+// BB block chat - it save iterations
+Bot.blockChat(params)
+
+Bot.sendMessage("✅ User chat blocked: " + params, { is_reply: true });

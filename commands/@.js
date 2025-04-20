@@ -97,9 +97,3 @@ var history = {
     return Bot.getProperty("history" + userid, []);
   },
 };
-
-var banned = Bot.getProp(user?.telegramid);
-if (banned === "blocked") {
-  Bot.sendMessage("❌ You are blocked by the admin.");
-  return;
-}

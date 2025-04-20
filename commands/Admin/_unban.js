@@ -22,5 +22,7 @@ if (!/^\d+$/.test(params)) {
   );
 }
 
-Bot.setProp(params, null);
-Bot.sendMessage("✅ User unblocked: " + params, { is_reply: true });
+// BB unblock chat
+Bot.unblockChat(params)
+
+Bot.sendMessage("✅ User chat unblocked: " + params, { is_reply: true });
