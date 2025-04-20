@@ -1,8 +1,8 @@
 /*CMD
   command: /balance
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
+  auto_retry_time:
   folder: user basic
 
   <<ANSWER
@@ -12,25 +12,22 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases: 
-  group: 
+  aliases:
+  group:
 CMD*/
 
-// Get bot settings from admin panel
-var values = AdminPanel.getPanelValues("SETTINGS");
-var linkPrefix = values.REFER_LINK_PREFIX || "Bot";
+const linkPrefix = SETTINGS.REFER_LINK_PREFIX || "Bot";
 // Get user details
-var userId = user.telegramid;
-var firstName = user.first_name;
-var username = user.username ? "@" + user.username : "No username";
-var inviter = RefLib.getAttractedBy();
-var inviteLink = Libs.ReferralLib.getRefLink(bot.name, linkPrefix);
-var balance = Libs.ResourcesLib.userRes("balance").value().toFixed(2);
-var walletAddress = Bot.getProp("wallet"+user.telegramid) || "Not Set";
-
+const userId = user.telegramid;
+const firstName = user.first_name;
+const username = user.username ? "@" + user.username : "No username";
+const inviter = RefLib.getAttractedBy();
+const inviteLink = Libs.ReferralLib.getRefLink(bot.name, linkPrefix);
+const balance = Libs.ResourcesLib.userRes("balance").value().toFixed(2);
+const walletAddress = Bot.getProp("wallet" + user.telegramid) || "Not Set";
 
 // Prepare message content
-var profileMessage = `
+const profileMessage = `
 <b>👤 User Profile</b>
 
 🆔 <b>User ID:</b> <code>${userId}</code>
@@ -42,29 +39,28 @@ var profileMessage = `
 🏦 <b>Wallet Address:</b> ↓\n<code>${walletAddress}</code>`;
 
 // Inline buttons
-var buttons = {
+const buttons = {
   inline_keyboard: [
-    [{ text: "🔗 Copy Invite Link", copy_text: {text: inviteLink}}],
+    [{ text: "🔗 Copy Invite Link", copy_text: { text: inviteLink } }],
     [{ text: "💸 Withdraw", callback_data: "/withdraw" }],
     [{ text: "⌛ Transaction History", callback_data: "/history" }],
-    [{ text: "🔙 Back", callback_data: "/start" }]
-  ]
+    [{ text: "🔙 Back", callback_data: "/start" }],
+  ],
+};
+
+const prms = {
+  text: profileMessage,
+  parse_mode: "HTML",
+  reply_markup: buttons,
 };
 
 // edit the message if message_id is available
 if (request.message?.message_id) {
-    Api.editMessageText({
-      message_id: request.message.message_id,
-      text: profileMessage,
-      parse_mode: "HTML",
-      reply_markup: buttons
-    });
-  } else {
-    // Send a new message if no message_id exists
-    Api.sendMessage({
-      text: profileMessage,
-      parse_mode: "HTML",
-      reply_markup: buttons
-    });
-  }
+  Api.editMessageText({
+    ...prms,
+    message_id: request.message.message_id,
+  });
+  return;
+}
 
+Api.sendMessage(prms);

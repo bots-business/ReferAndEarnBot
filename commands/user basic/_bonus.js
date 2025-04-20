@@ -1,8 +1,8 @@
 /*CMD
   command: /bonus
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
+  auto_retry_time:
   folder: user basic
 
   <<ANSWER
@@ -12,42 +12,50 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases: 
-  group: 
+  aliases:
+  group:
 CMD*/
 
-// Get bot settings from admin panel
-var values = AdminPanel.getPanelValues("SETTINGS");
+const interval = SETTINGS.BONUS_INTERVAL || 24; // Interval in hours
+const bonusAmount = SETTINGS.BONUS_REWARD || 5;
 
-var interval = values.BONUS_INTERVAL || 24;
-var bonusAmount = values.BONUS_REWARD || 5;
-let lastClaimTime = User.getProperty("claimTime");
+// Function to calculate time difference in hours
+function getTimeDifferenceInHours(lastTime, currentTime) {
+  return (currentTime - lastTime) / (1000 * 60 * 60);
+}
+
+// Function to send a message
+function sendMessage(text) {
+  Api.sendMessage({
+    text: text,
+    parse_mode: "Markdown",
+  });
+}
+
+// Main logic
+let lastClaimTime = User.getProp("claimTime");
 let currentTime = Date.now();
 
-// Check if the user has claimed before in the interval period 
 if (lastClaimTime) {
-  let timeDifference = (currentTime - lastClaimTime) / (1000 * 60 * 60);
+  let timeDifference = getTimeDifferenceInHours(lastClaimTime, currentTime);
 
   if (timeDifference < interval) {
     let remainingTime = (interval - timeDifference).toFixed(2);
-    Api.sendMessage({
-      text: `⏳ You can claim your next bonus after ${remainingTime} hours.`,
-      parse_mode: "Markdown"
-    });
+    sendMessage(`⏳ You can claim your next bonus after ${remainingTime} hours.`);
     return;
   }
 }
 
 // Add bonus to the user’s balance
-let balance = Libs.ResourcesLib.userRes("balance");
+let balance = Libs.ResLib.userRes("balance");
 balance.add(Number(bonusAmount));
 
 // Update the claim time
-User.setProperty("claimTime", currentTime, "integer");
+User.setProp("claimTime", currentTime);
 
 // Send confirmation message
-Api.sendMessage({
-    text: `🎉 You have successfully claimed your ${bonusAmount} ${values.CURRENCY || "TRX"} bonus!\n\n💰 Current Balance: ${balance.value()}`,
-    parse_mode: "Markdown"
-});
-
+sendMessage(
+  `🎉 You have successfully claimed your ${bonusAmount} ${
+    values.CURRENCY || "TRX"
+  } bonus!\n\n💰 Current Balance: ${balance.value()}`
+);

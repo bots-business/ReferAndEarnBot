@@ -1,9 +1,9 @@
 /*CMD
   command: /approve
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
-  folder: Withdraw 
+  auto_retry_time:
+  folder: Withdraw
 
   <<ANSWER
 
@@ -12,92 +12,103 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases: 
-  group: 
+  aliases:
+  group:
 CMD*/
 
-// get admin panel values
-var values = AdminPanel.getPanelValues("SETTINGS");
+// Helper function to get the current date
+function getCurrentDate() {
+  const d = new Date();
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
 
-// check if the user is an admin
-var admins = values.ADMINS;
-if (!admins || !admins.split(",").map(e => e.trim()).includes(user.telegramid.toString())) {
+// Helper function to send a message
+function sendMessage(chatId, text, replyMarkup = null) {
+  const options = {
+    chat_id: chatId,
+    text: text,
+    parse_mode: "HTML",
+  };
+  if (replyMarkup) {
+    options.reply_markup = replyMarkup;
+  }
+  Api.sendMessage(options);
+}
+
+// Determine action type and source of params
+const isReject = options?.action === "reject";
+const rawParams = isReject ? options.params : params;
+const [requestId, userId, amount] = rawParams.split(" ");
+
+// Validate callback query
+const messageId = request.message?.message_id;
+if (!messageId) return;
+
+// Validate required params
+if (!requestId || !userId || (!isReject && !amount)) return;
+
+// Retrieve request info
+const requestInfo = Bot.getProp(requestId);
+if (!requestInfo) {
   Api.answerCallbackQuery({
-    text: "🚫 You are not authorized to do this.\n\n Only admins can do this and you are not an admin",
+    callback_query_id: request.id,
+    text: "Invalid request ID.",
     show_alert: true,
-    callback_query_id: request.id
   });
   return;
 }
 
-// check if message is from a callback query
-var messageId = request.message.message_id;
-if (!messageId) {return}
+// Prepare visual elements
+const statusText = isReject ? "❌ Rejected" : "✅ Approved";
+const userNotice = isReject
+  ? "❌ Your withdraw request has been rejected."
+  : "✅ Your withdraw request has been approved.";
+const callbackNotice = isReject
+  ? "Withdraw request rejected."
+  : "Withdraw request approved.";
 
-// check if params is provided
-let [requestId, userId, amount] = params.split(" ");
-if (!requestId || !userId) {
-    return;
-}
-
-
-// edit message text to show approved status
-var requestInfo = Bot.getProp(requestId);
+// Update message to reflect status
 Api.editMessageText({
   message_id: messageId,
-  text: requestInfo+"\n\n<b>✅ Approved</b>",
+  text: `${requestInfo}\n\n<b>${statusText}</b>`,
   parse_mode: "HTML",
   reply_markup: {
-    inline_keyboard: [
-      [{ text: "🗑️ Delete", callback_data: "/delete"}]
-    ]
-    }
+    inline_keyboard: [[{ text: "🗑️ Delete", callback_data: "/delete" }]],
+  },
+});
+
+// Notify admin
+Api.answerCallbackQuery({
+  callback_query_id: request.id,
+  text: callbackNotice,
+  show_alert: true,
+});
+
+// Notify user
+sendMessage(userId, userNotice);
+
+// Notify payout channel
+sendMessage(
+  values.ANNOUNCEMENT_CHANNEL,
+  `${requestInfo}\n\n<b>${statusText}</b>`,
+  {
+    inline_keyboard: [[{ text: "🗑️ Delete", callback_data: "/delete" }]],
+  }
+);
+
+// If approved, save withdrawal history
+if (!isReject) {
+  const userWallet = Bot.getProp("wallet" + userId);
+  history.add(userId, {
+    amount: amount,
+    wallet: userWallet,
+    date: getCurrentDate(),
+    status: "Success",
   });
-  
-  // show alert to the admin
-  Api.answerCallbackQuery({
-    callback_query_id: request.id,
-    text: "Witdraw request approved.",
-    show_alert: true
-  })
+}
 
-  //send notification to user
-  Api.sendMessage({
-    chat_id: userId,
-    text: "✅ Your withdraw request has been approved.",
-    parse_mode: "HTML"
-  });
-
-  //send notification to payout channel
-  Api.sendMessage({
-    chat_id: values.ANNOUNCEMENT_CHANNEL,
-    text: requestInfo+"\n\n<b>✅ Approved</b>",
-    parse_mode: "HTML",
-    reply_markup: {
-      inline_keyboard: [
-        [{ text: "🗑️ Delete", callback_data: "/delete"}]
-      ]
-      }
-    });
-
-    function getCurrentDate() {
-      var d = new Date();
-      var year = d.getFullYear();
-      var month = String(d.getMonth() + 1).padStart(2, "0");
-      var day = String(d.getDate()).padStart(2, "0");
-      return `${year}-${month}-${day}`;
-    }
-
-    
-    // save withdraw history
-    let userWallet = Bot.getProp("wallet"+userId);
-    // we have function to get and set withdrawal history on @ command
-    history.add(userId, {
-      amount: amount,
-      wallet: userWallet,
-      date: getCurrentDate(),
-      status: "Success"
-    });
-
-    // delete the request info from bot props
-    Bot.deleteProp(requestId);
+// Clean up bot props
+Bot.deleteProp(requestId);

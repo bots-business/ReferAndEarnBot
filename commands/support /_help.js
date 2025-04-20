@@ -1,9 +1,9 @@
 /*CMD
   command: /help
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
-  folder: support 
+  auto_retry_time:
+  folder: support
 
   <<ANSWER
 
@@ -12,14 +12,14 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases: 
-  group: 
+  aliases:
+  group:
 CMD*/
 
-var values = AdminPanel.getPanelValues("SETTINGS");
-
 // Help message content
-var helpMessage = values.SUPPORT_MESSAGE || `ℹ️ *Bot Information:*
+var helpMessage =
+  SETTINGS.SUPPORT_MESSAGE ||
+  `ℹ️ *Bot Information:*
 
 🤖 *This is a Refer and Earn Bot.*
 ⚡️ Refer your friends to this bot to earn TRX.
@@ -34,23 +34,23 @@ var helpMessage = values.SUPPORT_MESSAGE || `ℹ️ *Bot Information:*
 var buttons = {
   inline_keyboard: [
     [{ text: "❓ Ask a Question", callback_data: "/ask_question" }],
-    [{ text: "🔙 Back", callback_data: "/start" }]
-  ]
+    [{ text: "🔙 Back", callback_data: "/start" }],
+  ],
 };
+
+let prms = {
+  text: helpMessage,
+  reply_markup: buttons,
+  parse_mode: "Markdown",
+}
 
 // edit message if message_id is available
 if (request.message?.message_id) {
   Api.editMessageText({
-    message_id: request.message.message_id,
-    text: helpMessage,
-    parse_mode: "Markdown",
-    reply_markup: buttons
+    ...prms,
+    message_id: request.message.message_id
   });
-} else {
-  Api.sendMessage({
-    text: helpMessage,
-    parse_mode: "Markdown",
-    reply_markup: buttons
-  });
+  return;
 }
 
+Api.sendMessage(prms);
