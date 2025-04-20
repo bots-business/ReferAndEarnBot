@@ -1,8 +1,8 @@
 /*CMD
   command: /balance
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
+  auto_retry_time:
   folder: user basic
 
   <<ANSWER
@@ -12,13 +12,12 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases: 
-  group: 
+  aliases:
+  group:
 CMD*/
 
 // Get bot settings from admin panel
-var values = AdminPanel.getPanelValues("SETTINGS");
-var linkPrefix = values.REFER_LINK_PREFIX || "Bot";
+var linkPrefix = SETTINGS.REFER_LINK_PREFIX || "Bot";
 // Get user details
 var userId = user.telegramid;
 var firstName = user.first_name;

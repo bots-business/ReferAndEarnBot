@@ -1,8 +1,8 @@
 /*CMD
   command: /start
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
+  auto_retry_time:
   folder: user basic
 
   <<ANSWER
@@ -12,13 +12,11 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases: 
-  group: 
+  aliases:
+  group:
 CMD*/
 
-// Get bot settings from admin panel
-var values = AdminPanel.getPanelValues("SETTINGS");
-var linkPrefix = values.REFER_LINK_PREFIX || "Bot"
+var linkPrefix = SETTINGS.REFER_LINK_PREFIX || "Bot"
 var totalUser = Libs.ResourcesLib.anotherChatRes("totalUser", "global");
 
 // if user is new, add to total users.
@@ -31,7 +29,7 @@ var tracks = {
   onTouchOwnLink: function () {
     Bot.sendMessage("*❌ Stop Clicking Your Own Referral Link!*");
   },
-  
+
   onAtractedByUser: function (byUser) {
     Api.sendMessage({
       text: `🎁 You are invited by <a href='tg://user?id=${byUser.telegramid}'>${byUser.first_name}</a>`,
@@ -43,11 +41,11 @@ var tracks = {
       parse_mode: "HTML"
     });
   },
-  
+
   onAlreadyAttracted: function () {
     Bot.sendMessage("*🚫 You Have Already Started The Bot!*");
   },
-  
+
   linkPrefix: linkPrefix
 };
 RefLib.track(tracks);

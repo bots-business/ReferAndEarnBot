@@ -1,8 +1,8 @@
 /*CMD
   command: /broadcast
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
+  auto_retry_time:
   folder: broadcast
 
   <<ANSWER
@@ -12,15 +12,12 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases: 
-  group: 
+  aliases:
+  group:
 CMD*/
 
-// get admin panel values
-var values = AdminPanel.getPanelValues("SETTINGS");
-
 // check if the user is an admin
-var admins = values.ADMINS;
+var admins = SETTINGS.ADMINS;
 if (!admins || !admins.split(",").map(e => e.trim()).includes(user.telegramid.toString())) {
   Api.sendMessage({
     text: "🚫 You are not authorized to do this.\n\n Only admins can do this and you are not an admin"
@@ -31,10 +28,10 @@ if (!admins || !admins.split(",").map(e => e.trim()).includes(user.telegramid.to
 if (!chat || chat.chat_type !== "private") {
     return;
   }
-  
+
   var message_id = request?.reply_to_message?.message_id;
   var chat_id = request?.reply_to_message?.chat?.id;
-  
+
   if (!message_id) {
     Api.sendMessage({
       text: "Please reply to a message to broadcast it.",
@@ -42,7 +39,7 @@ if (!chat || chat.chat_type !== "private") {
     });
     return;
   }
-  
+
   Bot.runAll({
     command: "/news",
     for_chats: "private-chats",

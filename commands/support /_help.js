@@ -1,9 +1,9 @@
 /*CMD
   command: /help
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
-  folder: support 
+  auto_retry_time:
+  folder: support
 
   <<ANSWER
 
@@ -12,14 +12,12 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases: 
-  group: 
+  aliases:
+  group:
 CMD*/
 
-var values = AdminPanel.getPanelValues("SETTINGS");
-
 // Help message content
-var helpMessage = values.SUPPORT_MESSAGE || `ℹ️ *Bot Information:*
+var helpMessage = SETTINGS.SUPPORT_MESSAGE || `ℹ️ *Bot Information:*
 
 🤖 *This is a Refer and Earn Bot.*
 ⚡️ Refer your friends to this bot to earn TRX.

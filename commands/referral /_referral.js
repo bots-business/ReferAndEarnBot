@@ -1,9 +1,9 @@
 /*CMD
   command: /referral
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
-  folder: referral 
+  auto_retry_time:
+  folder: referral
 
   <<ANSWER
 
@@ -12,22 +12,19 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases: 
-  group: 
+  aliases:
+  group:
 CMD*/
 
-// Get bot settings from admin panel
-var values = AdminPanel.getPanelValues("SETTINGS");
-
 // bonus and currency settings
-var referralBonus = values.REFER_REWARD || 0.5;
-var currency = values.CURRENCY || "TRX";
+var referralBonus = SETTINGS.REFER_REWARD || 0.5;
+var currency = SETTINGS.CURRENCY || "TRX";
 
 // Generate referral link
-var inviteLink = RefLib.getRefLink(bot.name, values.REFER_LINK_PREFIX || "Bot");
+var inviteLink = RefLib.getRefLink(bot.name, SETTINGS.REFER_LINK_PREFIX || "Bot");
 
 // Image URL for link preview
-let imageUrl = values.REFER_IMAGE_URL || "https://telegra.ph/file/48041b64392e58130f23a.jpg";
+let imageUrl = SETTINGS.REFER_IMAGE_URL || "https://telegra.ph/file/48041b64392e58130f23a.jpg";
 
 // Prepare message content
 let refMessage =

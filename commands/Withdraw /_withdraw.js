@@ -1,9 +1,9 @@
 /*CMD
   command: /withdraw
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
-  folder: Withdraw 
+  auto_retry_time:
+  folder: Withdraw
 
   <<ANSWER
 
@@ -12,15 +12,14 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases: 
-  group: 
+  aliases:
+  group:
 CMD*/
 
-var values = AdminPanel.getPanelValues("SETTINGS");
-var minimumWithdraw = values.MINIMUM_WITHDRAW || 5; //default minimum withdraw amount
-var maximumWithdraw = values.MAXIMUM_WITHDRAW || 100; //default maximum withdraw amount
+var minimumWithdraw = SETTINGS.MINIMUM_WITHDRAW || 5; //default minimum withdraw amount
+var maximumWithdraw = SETTINGS.MAXIMUM_WITHDRAW || 100; //default maximum withdraw amount
 var wallet = Bot.getProp("wallet"+user.telegramid);
-var ntificationChannel = values.WITHDRAW_NOTIFICATION_CHANNEL;
+var ntificationChannel = SETTINGS.WITHDRAW_NOTIFICATION_CHANNEL;
 let userRes = Libs.ResourcesLib.userRes("balance");
 var withdrawMessage = `To withdraw balance please send /withdraw command followed by the amount. \n\n<b>For Example:</b> \n<code>/withdraw 100</code> \n\nYou can withdraw a minimum of ${minimumWithdraw} and a maximum of ${maximumWithdraw}.`;
 

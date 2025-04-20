@@ -1,8 +1,8 @@
 /*CMD
   command: /bonus
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
+  auto_retry_time:
   folder: user basic
 
   <<ANSWER
@@ -12,19 +12,16 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases: 
-  group: 
+  aliases:
+  group:
 CMD*/
 
-// Get bot settings from admin panel
-var values = AdminPanel.getPanelValues("SETTINGS");
-
-var interval = values.BONUS_INTERVAL || 24;
-var bonusAmount = values.BONUS_REWARD || 5;
+var interval = SETTINGS.BONUS_INTERVAL || 24;
+var bonusAmount = SETTINGS.BONUS_REWARD || 5;
 let lastClaimTime = User.getProperty("claimTime");
 let currentTime = Date.now();
 
-// Check if the user has claimed before in the interval period 
+// Check if the user has claimed before in the interval period
 if (lastClaimTime) {
   let timeDifference = (currentTime - lastClaimTime) / (1000 * 60 * 60);
 

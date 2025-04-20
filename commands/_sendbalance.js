@@ -1,20 +1,17 @@
 /*CMD
   command: /sendbalance
-  help: 
-  need_reply: 
-  auto_retry_time: 
-  folder: 
-  answer: 
-  keyboard: 
-  aliases: 
-  group: 
+  help:
+  need_reply:
+  auto_retry_time:
+  folder:
+  answer:
+  keyboard:
+  aliases:
+  group:
 CMD*/
 
-// get admin panel values
-var values = AdminPanel.getPanelValues("SETTINGS");
-
 // check if the user is an admin
-var admins = values.ADMINS;
+var admins = SETTINGS.ADMINS;
 if (!admins || !admins.split(",").map(e => e.trim()).includes(user.telegramid.toString())) {
   Api.sendMessage({
     text: "🚫 You are not authorized to do this.\n\n Only admins can do this and you are not an admin"
@@ -29,11 +26,10 @@ if (!params) {
     });
     return;
   }
-  
+
   let [userId, amount] = params.split(" ");
-  var values = AdminPanel.getPanelValues("SETTINGS");
-  var currency = values.CURRENCY || "TRX"; // Default currency
-  
+  var currency = SETTINGS.CURRENCY || "TRX"; // Default currency
+
   // Validation
   if (!userId || !amount || isNaN(userId) || isNaN(amount)) {
     Api.sendMessage({
@@ -42,25 +38,25 @@ if (!params) {
     });
     return;
   }
-  
+
   // Parse values
   userId = parseInt(userId);
   amount = parseInt(amount);
-  
+
   // Add balance
   let balance = Libs.ResourcesLib.anotherUserRes("balance", userId);
   balance.add(amount);
-  
+
   // Confirmation to admin
   Api.sendMessage({
     text: `✅ Successfully added <b>${amount}</b> ${currency} to user ID: <code>${userId}</code>\n<b>New balance:</b> ${balance.value()}`,
     parse_mode: "HTML"
   });
-  
+
   // Notify user
   Api.sendMessage({
     chat_id: userId,
     text: `💰 <b>You have received</b> ${amount} ${currency}\n<b>New balance:</b> ${balance.value()}`,
     parse_mode: "HTML"
   });
-  
+

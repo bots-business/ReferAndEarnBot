@@ -1,9 +1,9 @@
 /*CMD
   command: /decline
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
-  folder: Withdraw 
+  auto_retry_time:
+  folder: Withdraw
 
   <<ANSWER
 
@@ -12,15 +12,12 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases: 
-  group: 
+  aliases:
+  group:
 CMD*/
 
-// get admin panel values
-var values = AdminPanel.getPanelValues("SETTINGS");
-
 // check if the user is an admin
-var admins = values.ADMINS;
+var admins = SETTINGS.ADMINS;
 if (!admins || !admins.split(",").map(e => e.trim()).includes(user.telegramid.toString())) {
   Api.answerCallbackQuery({
     text: "🚫 You are not authorized to do this.\n\n Only admins can do this and you are not an admin",
@@ -53,7 +50,7 @@ Api.editMessageText({
     ]
     }
   });
-  
+
   // show alert to the admin
   Api.answerCallbackQuery({
     callback_query_id: request.id,
