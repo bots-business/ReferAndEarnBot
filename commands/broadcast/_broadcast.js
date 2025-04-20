@@ -17,19 +17,8 @@
 CMD*/
 
 // check if the user is an admin
-var admins = SETTINGS.ADMINS;
-if (
-  !admins ||
-  !admins
-    .split(",")
-    .map((e) => e.trim())
-    .includes(user.telegramid.toString())
-) {
-  Api.sendMessage({
-    text: "🚫 You are not authorized to do this.\n\n Only admins can do this and you are not an admin",
-  });
-  return;
-}
+// check if the user is an admin
+if(!checkAdminAccess()) return;
 
 if (!chat || chat.chat_type !== "private") {
   return;
