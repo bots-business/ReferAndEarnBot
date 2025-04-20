@@ -17,7 +17,7 @@
 CMD*/
 
 // Get wallet info from admin panel
-var waletInfo = SETTINGS.WALLET_INFO || "TRX (TRC20)";
+const waletInfo = SETTINGS.WALLET_INFO || "TRX (TRC20)";
 
 if (!params) {
   Api.sendMessage({
