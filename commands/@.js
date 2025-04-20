@@ -24,6 +24,20 @@ if (chat && (chat.chat_type === "group" || chat.chat_type === "supergroup")) {
 // just always preload the settings
 const SETTINGS = AdminPanel.getPanelValues("SETTINGS");
 
+function checkForAdminAccess() {
+  // no user - no admin
+  if(!user) { return false }
+
+  const isAdmin = SETTINGS.ADMINS?.split(",").map((e) => e.trim()).includes(user.telegramid.toString());
+  if (isAdmin) { return true }
+
+  Api.sendMessage({
+    text: "🚫 You are not authorized to do this.\n\n Only admins can do this and you are not an admin",
+  });
+
+  return false;
+}
+
 const backgroundCheck = SETTINGS.BACKGROUND_MEMBERSHIP_CHECKUP;
 
 if (backgroundCheck === true && chat && chat.chat_type === "private") {
