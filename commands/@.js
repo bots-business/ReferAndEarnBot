@@ -42,6 +42,23 @@ function checkForAdminAccess() {
 const needCheckAdminAccess =
   command && command?.folder && ADMIN_FOLDERS.includes(command?.folder);
 
+function sendNoAccessMessage() {
+  const text = `🚫 You are not authorized to do this.\n\n Only admins can do this and you are not an admin`;
+
+  // for Withdraw command we need Api.answerCallbackQuery
+  if(command?.folder === "Withdraw") {
+    Api.answerCallbackQuery({
+      text: text,
+      show_alert: true,
+      callback_query_id: request.id,
+    });
+    return;
+  }
+
+  // for all other commands we need to send message to user
+  Api.sendMessage({text: text});
+}
+
 if (needCheckAdminAccess) {
   // check if the user is an admin
   const isAdmin = checkForAdminAccess();
@@ -49,11 +66,8 @@ if (needCheckAdminAccess) {
   // return from bot execution if not admin.
   // It is @ (befor_all) command, so it is possible
   if (!isAdmin) {
-    Api.sendMessage({
-      text: "🚫 You are not authorized to do this.\n\n Only admins can do this and you are not an admin",
-    });
-
-    return;
+    sendNoAccessMessage();
+    return; // totally exist from the bot execution here
   }
 }
 
