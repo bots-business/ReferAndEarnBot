@@ -21,11 +21,10 @@ if (chat && (chat.chat_type === "group" || chat.chat_type === "supergroup")) {
   return;
 }
 
-//Background membership checkup can be configured in the admin panel
-// If you have enough iterations, turn it on
-var value = AdminPanel.getPanelValues("SETTINGS");
+// just always preload the settings
+const SETTINGS = AdminPanel.getPanelValues("SETTINGS");
 
-var backgroundCheck = value.BACKGROUND_MEMBERSHIP_CHECKUP;
+const backgroundCheck = SETTINGS.BACKGROUND_MEMBERSHIP_CHECKUP;
 
 if (backgroundCheck === true && chat && chat.chat_type === "private") {
   Libs.MembershipChecker.handle();
