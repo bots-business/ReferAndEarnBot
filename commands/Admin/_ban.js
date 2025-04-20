@@ -10,21 +10,6 @@
   group:
 CMD*/
 
-// check if the user is an admin
-var admins = SETTINGS.ADMINS;
-if (
-  !admins ||
-  !admins
-    .split(",")
-    .map((e) => e.trim())
-    .includes(user.telegramid.toString())
-) {
-  Api.sendMessage({
-    text: "🚫 You are not authorized to do this.\n\n Only admins can do this and you are not an admin",
-  });
-  return;
-}
-
 if (!params) {
   return Bot.sendMessage(
     'To block a user, please send "`/ban [user_id]`"\n\n*Example:*\n`/ban 124643754`'
