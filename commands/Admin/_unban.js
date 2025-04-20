@@ -10,19 +10,9 @@
   group:
 CMD*/
 
-if (!params) {
-  return Bot.sendMessage(
-    'To unban a an user, please send "`/unban [user_id]`"\n\n*Example:*\n`/unban 124643754`'
-  );
-}
-
-if (!/^\d+$/.test(params)) {
-  return Bot.sendMessage(
-    "❌ Invalid user ID. Please provide a valid numeric user ID without spaces or emojis."
-  );
-}
-
-// BB unblock chat
-Bot.unblockChat(params)
-
-Bot.sendMessage("✅ User chat unblocked: " + params, { is_reply: true });
+Bot.run({
+  command: "/ban",
+  options: {
+    tgid: params,
+  }
+})
