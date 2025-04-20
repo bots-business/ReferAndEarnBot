@@ -11,26 +11,22 @@
 CMD*/
 
 // we have function to get and set withdrawal history on @ command
-var withdrawalHistory = history.get(user.telegramid) || [];
+const withdrawalHistory = history.get(user.telegramid) || [];
 
-var historyText = "";
-var replyMarkup = {
+let historyText = "";
+const replyMarkup = {
   inline_keyboard: [[{ text: "🔙 Back", callback_data: "/balance" }]],
 };
 
-var messageId = request.message?.message_id;
+const messageId = request.message?.message_id;
 
 if (withdrawalHistory.length === 0) {
   historyText = "❌ No withdrawals have been made.";
 } else {
   historyText = "💸 <b>Your Withdrawal History:</b>\n\n";
-  for (var index = 0; index < withdrawalHistory.length; index++) {
-    var record = withdrawalHistory[index];
-    historyText += `#${index + 1}\n<b>Amount:</b> ${
-      record.amount
-    }\n<b>Wallet:</b> <code>${record.wallet}</code>\n<b>Date:</b> ${
-      record.date
-    }\n<b>Status:</b> ${record.status}\n\n`;
+  for (let index = 0; index < withdrawalHistory.length; index++) {
+    const record = withdrawalHistory[index];
+    historyText += `#${index + 1}\n<b>Amount:</b> ${record.amount}\n<b>Wallet:</b> <code>${record.wallet}</code>\n<b>Date:</b> ${record.date}\n<b>Status:</b> ${record.status}\n\n`;
   }
 }
 

@@ -16,8 +16,8 @@
   group:
 CMD*/
 
-var linkPrefix = SETTINGS.REFER_LINK_PREFIX || "Bot";
-var totalUser = Libs.ResourcesLib.anotherChatRes("totalUser", "global");
+const linkPrefix = SETTINGS.REFER_LINK_PREFIX || "Bot";
+const totalUser = Libs.ResourcesLib.anotherChatRes("totalUser", "global");
 
 // if user is new, add to total users.
 if (chat && chat.just_created === true) {
@@ -25,7 +25,7 @@ if (chat && chat.just_created === true) {
 }
 
 // Run referral tracking at the top
-var tracks = {
+const tracks = {
   onTouchOwnLink: function () {
     Bot.sendMessage("*❌ Stop Clicking Your Own Referral Link!*");
   },
@@ -57,12 +57,12 @@ let isMember = Libs.MembershipChecker.isMember();
 
 // If user hasn't joined all required chats
 if (!isMember) {
-  var chatArray = chats.split(",").map(function (chat) {
+  const chatArray = chats.split(",").map(function (chat) {
     return chat.trim();
   });
 
-  var inlineKeyboard = [];
-  for (var i = 0; i < chatArray.length; i += 2) {
+  const inlineKeyboard = [];
+  for (let i = 0; i < chatArray.length; i += 2) {
     let row = [];
     if (chatArray[i]) {
       row.push({
@@ -81,7 +81,7 @@ if (!isMember) {
 
   inlineKeyboard.push([{ text: "✅ Joined", callback_data: "/start" }]);
 
-  var msg =
+  const msg =
     values.NEED_JOIN_MSG ||
     `
 📢 *Join Required Channels!*

@@ -18,7 +18,7 @@ CMD*/
 
 if (!options) return;
 
-var task = options?.run_all_task;
+const task = options?.run_all_task;
 if (!task) return;
 
 

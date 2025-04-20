@@ -16,12 +16,12 @@
   group:
 CMD*/
 
-var minimumWithdraw = SETTINGS.MINIMUM_WITHDRAW || 5; //default minimum withdraw amount
-var maximumWithdraw = SETTINGS.MAXIMUM_WITHDRAW || 100; //default maximum withdraw amount
-var wallet = Bot.getProp("wallet" + user.telegramid);
-var ntificationChannel = SETTINGS.WITHDRAW_NOTIFICATION_CHANNEL;
+const minimumWithdraw = SETTINGS.MINIMUM_WITHDRAW || 5; //default minimum withdraw amount
+const maximumWithdraw = SETTINGS.MAXIMUM_WITHDRAW || 100; //default maximum withdraw amount
+const wallet = Bot.getProp("wallet" + user.telegramid);
+const ntificationChannel = SETTINGS.WITHDRAW_NOTIFICATION_CHANNEL;
 let userRes = Libs.ResourcesLib.userRes("balance");
-var withdrawMessage = `To withdraw balance please send /withdraw command followed by the amount. \n\n<b>For Example:</b> \n<code>/withdraw 100</code> \n\nYou can withdraw a minimum of ${minimumWithdraw} and a maximum of ${maximumWithdraw}.`;
+const withdrawMessage = `To withdraw balance please send /withdraw command followed by the amount. \n\n<b>For Example:</b> \n<code>/withdraw 100</code> \n\nYou can withdraw a minimum of ${minimumWithdraw} and a maximum of ${maximumWithdraw}.`;
 
 if (!params) {
   Api.sendMessage({
@@ -41,7 +41,7 @@ if (!wallet) {
   });
   return;
 }
-var amount = parseFloat(params);
+let amount = parseFloat(params);
 
 if (isNaN(amount)) {
   Api.sendMessage({
@@ -59,7 +59,7 @@ if (amount < minimumWithdraw || amount > maximumWithdraw) {
   return;
 }
 
-var userBalance = Libs.ResourcesLib.userRes("balance").value();
+const userBalance = Libs.ResourcesLib.userRes("balance").value();
 
 if (amount > userBalance) {
   Api.sendMessage({
@@ -77,9 +77,9 @@ if (!ntificationChannel) {
   return;
 }
 
-var date = new Date();
+const date = new Date();
 //because the DateTime formate Lib has bug, we will use the native JS Date object to get the date and time.
-var options = {
+const options = {
   timeZone: "Asia/Kolkata",
   day: "2-digit",
   month: "2-digit",
@@ -89,9 +89,9 @@ var options = {
   hour12: true,
 };
 
-var formattedTime = date.toLocaleString("en-GB", options).replace(",", " -");
+const formattedTime = date.toLocaleString("en-GB", options).replace(",", " -");
 
-var requestInfo = `<b>😎 User:</> <a href='tg://user?id=${user.telegramid}'> ${user.first_name}</a>
+const requestInfo = `<b>😎 User:</> <a href='tg://user?id=${user.telegramid}'> ${user.first_name}</a>
 <b>💵 Amount:</> ${amount}
 <b>💰 Wallet:</> <code> ${wallet} </>
 <b>⌚ Time:</> ${formattedTime} (IST)`;

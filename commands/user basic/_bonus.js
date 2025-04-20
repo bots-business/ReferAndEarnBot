@@ -16,8 +16,8 @@
   group:
 CMD*/
 
-var interval = SETTINGS.BONUS_INTERVAL || 24;
-var bonusAmount = SETTINGS.BONUS_REWARD || 5;
+const interval = SETTINGS.BONUS_INTERVAL || 24;
+const bonusAmount = SETTINGS.BONUS_REWARD || 5;
 let lastClaimTime = User.getProperty("claimTime");
 let currentTime = Date.now();
 

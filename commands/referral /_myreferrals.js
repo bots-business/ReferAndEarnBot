@@ -17,10 +17,10 @@
 CMD*/
 
 // Get the list of referrals using the ReferralLib library
-let refList = Libs.ReferralLib.getRefList();
+const refList = Libs.ReferralLib.getRefList();
 
 // Initialize the referral details message with total invites and first invite date
-var referralDetails =
+let referralDetails =
   "➺ <b>Total Invites:</b> " +
   Libs.ReferralLib.getRefCount() +
   "\n➺ <b>First Invite:</b> " +
@@ -33,18 +33,18 @@ if (!refList.exist) {
 }
 
 // Get the list of referred users
-var referredUsers = refList.getUsers();
+const referredUsers = refList.getUsers();
 
 // Loop through each referred user and append their details to the referral message
-for (var index in referredUsers) {
-  var user = referredUsers[index];
+for (let index in referredUsers) {
+  const user = referredUsers[index];
   referralDetails += `➺ <a href="tg://user?id=${user.telegramid}">${
     user.first_name || "Unknown User"
   }</a>\n`;
 }
 
 // Define the "Back" button for the inline keyboard
-var backButton = [[{ text: "🔙 Back", callback_data: "/referral" }]];
+const backButton = [[{ text: "🔙 Back", callback_data: "/referral" }]];
 
 // Edit the message if message_id available else send new one
 if (request.message && request.message.message_id) {

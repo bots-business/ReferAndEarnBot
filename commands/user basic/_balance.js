@@ -15,20 +15,19 @@
   aliases:
   group:
 CMD*/
-
-// Get bot settings from admin panel
-var linkPrefix = SETTINGS.REFER_LINK_PREFIX || "Bot";
+/*CMD
+const linkPrefix = SETTINGS.REFER_LINK_PREFIX || "Bot";
 // Get user details
-var userId = user.telegramid;
-var firstName = user.first_name;
-var username = user.username ? "@" + user.username : "No username";
-var inviter = RefLib.getAttractedBy();
-var inviteLink = Libs.ReferralLib.getRefLink(bot.name, linkPrefix);
-var balance = Libs.ResourcesLib.userRes("balance").value().toFixed(2);
-var walletAddress = Bot.getProp("wallet" + user.telegramid) || "Not Set";
+const userId = user.telegramid;
+const firstName = user.first_name;
+const username = user.username ? "@" + user.username : "No username";
+const inviter = RefLib.getAttractedBy();
+const inviteLink = Libs.ReferralLib.getRefLink(bot.name, linkPrefix);
+const balance = Libs.ResourcesLib.userRes("balance").value().toFixed(2);
+const walletAddress = Bot.getProp("wallet" + user.telegramid) || "Not Set";
 
 // Prepare message content
-var profileMessage = `
+const profileMessage = `
 <b>👤 User Profile</b>
 
 🆔 <b>User ID:</b> <code>${userId}</code>
@@ -40,7 +39,7 @@ var profileMessage = `
 🏦 <b>Wallet Address:</b> ↓\n<code>${walletAddress}</code>`;
 
 // Inline buttons
-var buttons = {
+const buttons = {
   inline_keyboard: [
     [{ text: "🔗 Copy Invite Link", copy_text: { text: inviteLink } }],
     [{ text: "💸 Withdraw", callback_data: "/withdraw" }],
