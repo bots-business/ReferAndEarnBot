@@ -16,9 +16,7 @@
   group:
 CMD*/
 
-if (!params || isNaN(params)) {
-  return;
-}
+if (!params || isNaN(params)) return;
 
 //save the user id from params and run another command for getting admin reply.
 User.setProperty("reply_to", params);
