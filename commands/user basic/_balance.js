@@ -15,7 +15,7 @@
   aliases:
   group:
 CMD*/
-/*CMD
+
 const linkPrefix = SETTINGS.REFER_LINK_PREFIX || "Bot";
 // Get user details
 const userId = user.telegramid;
@@ -48,19 +48,19 @@ const buttons = {
   ],
 };
 
+const prms = {
+  text: profileMessage,
+  parse_mode: "HTML",
+  reply_markup: buttons,
+};
+
 // edit the message if message_id is available
 if (request.message?.message_id) {
   Api.editMessageText({
+    ...prms,
     message_id: request.message.message_id,
-    text: profileMessage,
-    parse_mode: "HTML",
-    reply_markup: buttons,
   });
-} else {
-  // Send a new message if no message_id exists
-  Api.sendMessage({
-    text: profileMessage,
-    parse_mode: "HTML",
-    reply_markup: buttons,
-  });
+  return;
 }
+
+Api.sendMessage(prms);
