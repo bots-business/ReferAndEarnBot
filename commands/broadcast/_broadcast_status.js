@@ -24,11 +24,10 @@ let prms = {
   parse_mode: "HTML"
 }
 
-var task_id = Bot.getProperty("broadcast_task_id");
-text = "No broadcast task found. Please create a new broadcast first.\n\nUse the command /broadcast to create a new broadcast task."
+const task_id = Bot.getProperty("broadcast_task_id");
+prms.text = "No broadcast task found. Please create a new broadcast first.\n\nUse the command /broadcast to create a new broadcast task."
 
 if (!task_id) {
-  prms.text = text;
   Api.sendMessage(prms);
   return;
 }
