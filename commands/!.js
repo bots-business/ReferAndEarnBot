@@ -1,6 +1,6 @@
-if (!user) {
-  return; // we can't send message
-}
+// we can't send message
+if (!user) return;
+
 
 // error message content
 let errorMessage =
