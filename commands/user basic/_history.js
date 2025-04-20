@@ -11,36 +11,43 @@
 CMD*/
 
 // we have function to get and set withdrawal history on @ command
-const withdrawalHistory = history.get(user.telegramid) || [];
+// Function to generate withdrawal history text
+function generateHistoryText(history) {
+  if (history.length === 0) {
+    return "❌ No withdrawals have been made.";
+  }
 
-let historyText = "";
+  let text = "💸 <b>Your Withdrawal History:</b>\n\n";
+  history.forEach((record, index) => {
+    text += `#${index + 1}\n<b>Amount:</b> ${record.amount}\n<b>Wallet:</b> <code>${record.wallet}</code>\n<b>Date:</b> ${record.date}\n<b>Status:</b> ${record.status}\n\n`;
+  });
+
+  return text;
+}
+
+// Function to send or edit message
+function sendOrEditMessage(text, replyMarkup, messageId) {
+  const messageOptions = {
+    text: text,
+    parse_mode: "HTML",
+    reply_markup: replyMarkup,
+  };
+
+  if (messageId) {
+    Api.editMessageText({
+      ...messageOptions,
+      message_id: messageId,
+    });
+    return
+  }
+  Api.sendMessage(messageOptions);
+}
+
+const withdrawalHistory = history.get(user.telegramid) || [];
 const replyMarkup = {
   inline_keyboard: [[{ text: "🔙 Back", callback_data: "/balance" }]],
 };
-
 const messageId = request.message?.message_id;
+const historyText = generateHistoryText(withdrawalHistory);
 
-if (withdrawalHistory.length === 0) {
-  historyText = "❌ No withdrawals have been made.";
-} else {
-  historyText = "💸 <b>Your Withdrawal History:</b>\n\n";
-  for (let index = 0; index < withdrawalHistory.length; index++) {
-    const record = withdrawalHistory[index];
-    historyText += `#${index + 1}\n<b>Amount:</b> ${record.amount}\n<b>Wallet:</b> <code>${record.wallet}</code>\n<b>Date:</b> ${record.date}\n<b>Status:</b> ${record.status}\n\n`;
-  }
-}
-
-if (messageId) {
-  Api.editMessageText({
-    message_id: messageId,
-    text: historyText,
-    parse_mode: "HTML",
-    reply_markup: replyMarkup,
-  });
-} else {
-  Api.sendMessage({
-    text: historyText,
-    parse_mode: "HTML",
-    reply_markup: replyMarkup,
-  });
-}
+sendOrEditMessage(historyText, replyMarkup, messageId);
