@@ -24,6 +24,9 @@ if (chat && (chat.chat_type === "group" || chat.chat_type === "supergroup")) {
 // just always preload the settings
 const SETTINGS = AdminPanel.getPanelValues("SETTINGS");
 
+// it is folders only for admins
+const ADMIN_FOLDERS = [ "Admin", "Withdraw"]
+
 function checkForAdminAccess() {
   // no user - no admin
   if(!user) { return false }
@@ -36,6 +39,17 @@ function checkForAdminAccess() {
   });
 
   return false;
+}
+
+const needCheckAdminAccess = command && command?.folder && ADMIN_FOLDERS.includes(command?.folder);
+
+if(needCheckAdminAccess) {
+  // check if the user is an admin
+  const isAdmin = checkForAdminAccess();
+
+  // return from bot execution if not admin.
+  // It is @ (befor_all) command, so it is possible
+  if (!isAdmin) { return }
 }
 
 const backgroundCheck = SETTINGS.BACKGROUND_MEMBERSHIP_CHECKUP;
