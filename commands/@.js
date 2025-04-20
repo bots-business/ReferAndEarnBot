@@ -27,6 +27,9 @@ const SETTINGS = AdminPanel.getPanelValues("SETTINGS");
 // it is folders only for admins
 const ADMIN_FOLDERS = ["Admin", "Withdraw"];
 
+const needCheckAdminAccess =
+  command && command?.folder && ADMIN_FOLDERS.includes(command?.folder);
+
 function checkForAdminAccess() {
   // no user - no admin
   if (!user) return false;
@@ -38,9 +41,6 @@ function checkForAdminAccess() {
 
   return false;
 }
-
-const needCheckAdminAccess =
-  command && command?.folder && ADMIN_FOLDERS.includes(command?.folder);
 
 function sendNoAccessMessage() {
   const text = `🚫 You are not authorized to do this.\n\n Only admins can do this and you are not an admin`;
@@ -59,16 +59,18 @@ function sendNoAccessMessage() {
   Api.sendMessage({text: text});
 }
 
-if (needCheckAdminAccess) {
+function checkAdminAccess(){
   // check if the user is an admin
   const isAdmin = checkForAdminAccess();
+  if(isAdmin) return true;
 
-  // return from bot execution if not admin.
-  // It is @ (befor_all) command, so it is possible
-  if (!isAdmin) {
-    sendNoAccessMessage();
-    return; // totally exist from the bot execution here
-  }
+  sendNoAccessMessage();
+}
+
+// return from bot execution if not admin.
+// It is @ (befor_all) command, so it is possible
+if (needCheckAdminAccess && !checkAdminAccess()) {
+  return; // totally exist from the bot execution here
 }
 
 const backgroundCheck = SETTINGS.BACKGROUND_MEMBERSHIP_CHECKUP;
