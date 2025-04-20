@@ -16,9 +16,7 @@
   group:
 CMD*/
 
-if (!options) {
-  return;
-}
+if (!options) return;
 
 Api.copyMessage({
   from_chat_id: options.chat_id,

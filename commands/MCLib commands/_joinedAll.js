@@ -10,9 +10,6 @@
   group:
 CMD*/
 
-if (!options) {
-  return;
-} // protect from manual run
-Bot.sendMessage("Thank you for joining!");
+if (!options) return; // protect from manual run
 
-// user joined all required chat
+Bot.sendMessage("Thank you for joining!");
