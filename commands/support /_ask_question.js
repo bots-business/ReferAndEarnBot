@@ -13,19 +13,9 @@
   group:
 CMD*/
 
-var admins = SETTINGS.ADMINS;
-
-if (!admins) {
+if (!haveAnyAdmins()) {
   Bot.sendMessage(
     "❌ No admins found. If you're the owner of this bot, please set the admins in the admin panel."
-  );
-  return;
-}
-
-var adminList = admins.split(",").map((a) => a.trim());
-if (adminList.length === 0 || !adminList[0]) {
-  Bot.sendMessage(
-    "❌ Admin list is empty. Please add valid Telegram IDs in the admin panel."
   );
   return;
 }

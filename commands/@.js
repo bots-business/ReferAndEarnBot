@@ -30,13 +30,22 @@ const ADMIN_FOLDERS = ["Admin", "Withdraw"];
 const needCheckAdminAccess =
   command && command?.folder && ADMIN_FOLDERS.includes(command?.folder);
 
+function getAdmins() {
+  const admins = SETTINGS.ADMINS?.split(",").map((e) => e.trim());
+  if (!admins || admins.length === 0) return [];
+
+  return admins;
+}
+
+function haveAnyAdmins() {
+  return getAdmins().length > 0;
+}
+
 function checkForAdminAccess() {
   // no user - no admin
   if (!user) return false;
 
-  const isAdmin = SETTINGS.ADMINS?.split(",")
-    .map((e) => e.trim())
-    .includes(user.telegramid.toString());
+  const isAdmin = getAdmins().includes(user.telegramid.toString());
   if (isAdmin) return true;
 
   return false;
