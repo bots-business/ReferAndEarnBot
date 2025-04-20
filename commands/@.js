@@ -29,20 +29,12 @@ const ADMIN_FOLDERS = ["Admin", "Withdraw"];
 
 function checkForAdminAccess() {
   // no user - no admin
-  if (!user) {
-    return false;
-  }
+  if (!user) return false;
 
   const isAdmin = SETTINGS.ADMINS?.split(",")
     .map((e) => e.trim())
     .includes(user.telegramid.toString());
-  if (isAdmin) {
-    return true;
-  }
-
-  Api.sendMessage({
-    text: "🚫 You are not authorized to do this.\n\n Only admins can do this and you are not an admin",
-  });
+  if (isAdmin) return true;
 
   return false;
 }
@@ -57,6 +49,10 @@ if (needCheckAdminAccess) {
   // return from bot execution if not admin.
   // It is @ (befor_all) command, so it is possible
   if (!isAdmin) {
+    Api.sendMessage({
+      text: "🚫 You are not authorized to do this.\n\n Only admins can do this and you are not an admin",
+    });
+
     return;
   }
 }
