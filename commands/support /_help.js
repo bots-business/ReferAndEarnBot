@@ -38,18 +38,19 @@ var buttons = {
   ],
 };
 
+let prms = {
+  text: helpMessage,
+  reply_markup: buttons,
+  parse_mode: "Markdown",
+}
+
 // edit message if message_id is available
 if (request.message?.message_id) {
   Api.editMessageText({
-    message_id: request.message.message_id,
-    text: helpMessage,
-    parse_mode: "Markdown",
-    reply_markup: buttons,
+    ...prms,
+    message_id: request.message.message_id
   });
-} else {
-  Api.sendMessage({
-    text: helpMessage,
-    parse_mode: "Markdown",
-    reply_markup: buttons,
-  });
+  return;
 }
+
+Api.sendMessage(prms);
