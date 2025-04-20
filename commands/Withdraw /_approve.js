@@ -16,64 +16,82 @@
   group:
 CMD*/
 
-// check if message is from a callback query
-let messageId = request.message.message_id;
+// Helper function to get the current date
+function getCurrentDate() {
+  const d = new Date();
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+// Helper function to send a message
+function sendMessage(chatId, text, replyMarkup = null) {
+  const options = {
+    chat_id: chatId,
+    text: text,
+    parse_mode: "HTML",
+  };
+  if (replyMarkup) {
+    options.reply_markup = replyMarkup;
+  }
+  Api.sendMessage(options);
+}
+
+// Validate callback query
+const messageId = request.message?.message_id;
 if (!messageId) {
   return;
 }
 
-// check if params is provided
-let [requestId, userId, amount] = params.split(" ");
-if (!requestId || !userId) {
+// Validate params
+const [requestId, userId, amount] = params.split(" ");
+if (!requestId || !userId || !amount) {
   return;
 }
 
-// edit message text to show approved status
-let requestInfo = Bot.getProp(requestId);
+// Retrieve request info
+const requestInfo = Bot.getProp(requestId);
+if (!requestInfo) {
+  Api.answerCallbackQuery({
+    callback_query_id: request.id,
+    text: "Invalid request ID.",
+    show_alert: true,
+  });
+  return;
+}
+
+// Edit message to show approved status
 Api.editMessageText({
   message_id: messageId,
-  text: requestInfo + "\n\n<b>✅ Approved</b>",
+  text: `${requestInfo}\n\n<b>✅ Approved</b>`,
   parse_mode: "HTML",
   reply_markup: {
     inline_keyboard: [[{ text: "🗑️ Delete", callback_data: "/delete" }]],
   },
 });
 
-// show alert to the admin
+// Notify admin
 Api.answerCallbackQuery({
   callback_query_id: request.id,
-  text: "Witdraw request approved.",
+  text: "Withdraw request approved.",
   show_alert: true,
 });
 
-//send notification to user
-Api.sendMessage({
-  chat_id: userId,
-  text: "✅ Your withdraw request has been approved.",
-  parse_mode: "HTML",
-});
+// Notify user
+sendMessage(userId, "✅ Your withdraw request has been approved.");
 
-//send notification to payout channel
-Api.sendMessage({
-  chat_id: values.ANNOUNCEMENT_CHANNEL,
-  text: requestInfo + "\n\n<b>✅ Approved</b>",
-  parse_mode: "HTML",
-  reply_markup: {
+// Notify payout channel
+sendMessage(
+  values.ANNOUNCEMENT_CHANNEL,
+  `${requestInfo}\n\n<b>✅ Approved</b>`,
+  {
     inline_keyboard: [[{ text: "🗑️ Delete", callback_data: "/delete" }]],
-  },
-});
+  }
+);
 
-function getCurrentDate() {
-  let d = new Date();
-  let year = d.getFullYear();
-  let month = String(d.getMonth() + 1).padStart(2, "0");
-  let day = String(d.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
-
-// save withdraw history
-let userWallet = Bot.getProp("wallet" + userId);
-// we have function to get and set withdrawal history on @ command
+// Save withdrawal history
+const userWallet = Bot.getProp("wallet" + userId);
 history.add(userId, {
   amount: amount,
   wallet: userWallet,
@@ -81,5 +99,5 @@ history.add(userId, {
   status: "Success",
 });
 
-// delete the request info from bot props
+// Delete the request info from bot props
 Bot.deleteProp(requestId);
