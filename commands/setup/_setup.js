@@ -16,7 +16,12 @@
   group:
 CMD*/
 
-var settingsPanel = {
+// Please comment this line to prevent manual run
+// After run /setup you need uncomment this line again
+Bot.sendMessage("Setup is hard blocked. See BJS for /setup command");
+return
+
+const settingsPanel = {
   title: "Bot Settings & Personalization",
   description: "Configure all bot settings and personalization options here.",
   index: 0,
@@ -134,7 +139,7 @@ var settingsPanel = {
   ],
 };
 
-let botCommands = [
+const botCommands = [
   { command: "/start", description: "Start the bot" },
   { command: "/withdraw", description: "Withdraw your balance" },
   { command: "/bonus", description: "Claim your timely bonus" },
