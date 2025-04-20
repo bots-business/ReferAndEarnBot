@@ -17,7 +17,7 @@
 CMD*/
 
 // check if message is from a callback query
-var messageId = request.message.message_id;
+let messageId = request.message.message_id;
 if (!messageId) {
   return;
 }
@@ -29,7 +29,7 @@ if (!requestId || !userId) {
 }
 
 // edit message text to show approved status
-var requestInfo = Bot.getProp(requestId);
+let requestInfo = Bot.getProp(requestId);
 Api.editMessageText({
   message_id: messageId,
   text: requestInfo + "\n\n<b>✅ Approved</b>",
@@ -64,10 +64,10 @@ Api.sendMessage({
 });
 
 function getCurrentDate() {
-  var d = new Date();
-  var year = d.getFullYear();
-  var month = String(d.getMonth() + 1).padStart(2, "0");
-  var day = String(d.getDate()).padStart(2, "0");
+  let d = new Date();
+  let year = d.getFullYear();
+  let month = String(d.getMonth() + 1).padStart(2, "0");
+  let day = String(d.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
 
