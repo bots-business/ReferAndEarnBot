@@ -38,17 +38,17 @@ function sendMessage(chatId, text, replyMarkup = null) {
   Api.sendMessage(options);
 }
 
+// Determine action type and source of params
+const isReject = options?.action === "reject";
+const rawParams = isReject ? options.params : params;
+const [requestId, userId, amount] = rawParams.split(" ");
+
 // Validate callback query
 const messageId = request.message?.message_id;
-if (!messageId) {
-  return;
-}
+if (!messageId) return;
 
-// Validate params
-const [requestId, userId, amount] = params.split(" ");
-if (!requestId || !userId || !amount) {
-  return;
-}
+// Validate required params
+if (!requestId || !userId || (!isReject && !amount)) return;
 
 // Retrieve request info
 const requestInfo = Bot.getProp(requestId);
@@ -61,10 +61,19 @@ if (!requestInfo) {
   return;
 }
 
-// Edit message to show approved status
+// Prepare visual elements
+const statusText = isReject ? "❌ Rejected" : "✅ Approved";
+const userNotice = isReject
+  ? "❌ Your withdraw request has been rejected."
+  : "✅ Your withdraw request has been approved.";
+const callbackNotice = isReject
+  ? "Withdraw request rejected."
+  : "Withdraw request approved.";
+
+// Update message to reflect status
 Api.editMessageText({
   message_id: messageId,
-  text: `${requestInfo}\n\n<b>✅ Approved</b>`,
+  text: `${requestInfo}\n\n<b>${statusText}</b>`,
   parse_mode: "HTML",
   reply_markup: {
     inline_keyboard: [[{ text: "🗑️ Delete", callback_data: "/delete" }]],
@@ -74,30 +83,32 @@ Api.editMessageText({
 // Notify admin
 Api.answerCallbackQuery({
   callback_query_id: request.id,
-  text: "Withdraw request approved.",
+  text: callbackNotice,
   show_alert: true,
 });
 
 // Notify user
-sendMessage(userId, "✅ Your withdraw request has been approved.");
+sendMessage(userId, userNotice);
 
 // Notify payout channel
 sendMessage(
   values.ANNOUNCEMENT_CHANNEL,
-  `${requestInfo}\n\n<b>✅ Approved</b>`,
+  `${requestInfo}\n\n<b>${statusText}</b>`,
   {
     inline_keyboard: [[{ text: "🗑️ Delete", callback_data: "/delete" }]],
   }
 );
 
-// Save withdrawal history
-const userWallet = Bot.getProp("wallet" + userId);
-history.add(userId, {
-  amount: amount,
-  wallet: userWallet,
-  date: getCurrentDate(),
-  status: "Success",
-});
+// If approved, save withdrawal history
+if (!isReject) {
+  const userWallet = Bot.getProp("wallet" + userId);
+  history.add(userId, {
+    amount: amount,
+    wallet: userWallet,
+    date: getCurrentDate(),
+    status: "Success",
+  });
+}
 
-// Delete the request info from bot props
+// Clean up bot props
 Bot.deleteProp(requestId);
