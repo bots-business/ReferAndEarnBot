@@ -16,14 +16,11 @@
   group:
 CMD*/
 
-if (!options) {
-  return;
-}
+if (!options) return;
 
 var task = options?.run_all_task;
-if (!task) {
-  return;
-}
+if (!task) return;
+
 
 Bot.setProp("broadcast_task_id", task.id);
 

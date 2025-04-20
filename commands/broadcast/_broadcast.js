@@ -20,7 +20,7 @@ CMD*/
 // check if the user is an admin
 if(!checkAdminAccess()) return;
 
-if (!chat || chat.chat_type !== "private") {
+if (chat?.chat_type !== "private") {
   return;
 }
 
