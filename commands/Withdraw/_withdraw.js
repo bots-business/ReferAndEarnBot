@@ -1,19 +1,13 @@
 /*CMD
   command: /withdraw
-  help:
+  help: 
   need_reply: false
-  auto_retry_time:
+  auto_retry_time: 
   folder: Withdraw
-
-  <<ANSWER
-
-  ANSWER
-
-  <<KEYBOARD
-
-  KEYBOARD
-  aliases:
-  group:
+  answer: 
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
 const minimumWithdraw = SETTINGS.MINIMUM_WITHDRAW || 5; // Default minimum withdraw amount

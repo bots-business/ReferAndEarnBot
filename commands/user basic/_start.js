@@ -1,8 +1,8 @@
 /*CMD
   command: /start
-  help:
+  help: 
   need_reply: false
-  auto_retry_time:
+  auto_retry_time: 
   folder: user basic
 
   <<ANSWER
@@ -12,8 +12,8 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases:
-  group:
+  aliases: 
+  group: 
 CMD*/
 
 const linkPrefix = SETTINGS.REFER_LINK_PREFIX || "Bot";
@@ -23,6 +23,32 @@ const totalUser = Libs.ResourcesLib.anotherChatRes("totalUser", "global");
 if (chat && chat.just_created === true) {
   totalUser.add(1);
 }
+
+// Referral tracking
+var tracks = {
+  onTouchOwnLink: function () {
+    Bot.sendMessage("*❌ Stop Clicking Your Own Referral Link!*");
+  },
+  
+  onAtractedByUser: function (byUser) {
+    Api.sendMessage({
+      text: `🎁 You are invited by <a href='tg://user?id=${byUser.telegramid}'>${byUser.first_name}</a>`,
+      parse_mode: "HTML"
+    });
+    Api.sendMessage({
+      chat_id: byUser.telegramid,
+      text: `🎉 You have successfully invited <a href='tg://user?id=${user.telegramid}'>${user.first_name}</a>, Reward after they joined required channels!`,
+      parse_mode: "HTML"
+    });
+  },
+  
+  onAlreadyAttracted: function () {
+    Bot.sendMessage("*🚫 You Have Already Started The Bot!*");
+  },
+  
+  linkPrefix: linkPrefix
+};
+RefLib.track(tracks);
 
 // Helper function to send a message
 function sendMessage(text, buttons = null) {
@@ -59,17 +85,17 @@ function handleReferralRewards() {
 
 // Function to reward inviter
 function rewardInviter(inviter) {
-  const referralBonus = parseFloat(values.REFER_REWARD) || 0.5;
-  Libs.ResourcesLib.anotherUserRes("balance", inviter.telegramid).add(referralBonus);
+  const referralBonus = parseFloat(SETTINGS.REFER_REWARD) || 0.5;
+  Libs.ResourcesLib.anotherUserRes("balance", inviter.telegramid).add(parseFloat(referralBonus));
   notifyInviter(inviter, referralBonus);
-  User.setProperty("rewarded", true);
+  User.setProp("rewarded", true);
 }
 
 // Function to notify inviter
 function notifyInviter(inviter, referralBonus) {
   Api.sendMessage({
     chat_id: inviter.telegramid,
-    text: `🎉 You have received a referral bonus of *${referralBonus} ${values.CURRENCY}* for inviting ${user.first_name}!`,
+    text: `🎉 You have received a referral bonus of *${referralBonus} ${SETTINGS.CURRENCY}* for inviting ${user.first_name}!`,
     parse_mode: "Markdown",
   });
 }
@@ -91,7 +117,7 @@ function checkMembership() {
 function sendJoinMessage(chats) {
   const inlineKeyboard = generateJoinButtons(chats);
   const msg =
-    values.NEED_JOIN_MSG ||
+  SETTINGS.NEED_JOIN_MSG ||
     `
 📢 *Join Required Channels!*
 
@@ -126,10 +152,10 @@ function generateStartMessage() {
 // Function to get start message content
 function getStartMessageContent() {
   return (
-    values.START_MESSAGE ||
+    SETTINGS.START_MESSAGE ||
     `🎉 *Join Our Exclusive Affiliate Program!*
 
-💡 *Earn ${values.CURRENCY || "TRX"} by Referring Friends!*
+💡 *Earn ${SETTINGS.CURRENCY || "TRX"} by Referring Friends!*
 Invite your friends to join our community and earn rewards for each referral. 🚀
 
 🚀 *Start Referring Today and Maximize Your Rewards!*`

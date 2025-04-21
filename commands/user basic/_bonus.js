@@ -1,19 +1,13 @@
 /*CMD
   command: /bonus
-  help:
+  help: 
   need_reply: false
-  auto_retry_time:
+  auto_retry_time: 
   folder: user basic
-
-  <<ANSWER
-
-  ANSWER
-
-  <<KEYBOARD
-
-  KEYBOARD
-  aliases:
-  group:
+  answer: 
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
 const interval = SETTINGS.BONUS_INTERVAL || 24; // Interval in hours
@@ -47,7 +41,7 @@ if (lastClaimTime) {
 }
 
 // Add bonus to the user’s balance
-let balance = Libs.ResLib.userRes("balance");
+let balance = ResLib.userRes("balance");
 balance.add(Number(bonusAmount));
 
 // Update the claim time
@@ -56,6 +50,6 @@ User.setProp("claimTime", currentTime);
 // Send confirmation message
 sendMessage(
   `🎉 You have successfully claimed your ${bonusAmount} ${
-    values.CURRENCY || "TRX"
+    SETTINGS.CURRENCY || "TRX"
   } bonus!\n\n💰 Current Balance: ${balance.value()}`
 );

@@ -1,13 +1,13 @@
 /*CMD
   command: /justJoinedOne
-  help:
-  need_reply:
-  auto_retry_time:
+  help: 
+  need_reply: 
+  auto_retry_time: 
   folder: MCLib commands
-  answer:
-  keyboard:
-  aliases:
-  group:
+  answer: 
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
 if (!options) return // protect from manual run

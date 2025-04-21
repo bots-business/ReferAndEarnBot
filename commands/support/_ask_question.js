@@ -1,16 +1,13 @@
 /*CMD
   command: /ask_question
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
+  auto_retry_time: 
   folder: support
   answer: Please ask your question! ✅ All formats are supported—images, audio, videos, and text formatting. 🚀
-
-  <<KEYBOARD
-
-  KEYBOARD
-  aliases:
-  group:
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
 if (!haveAnyAdmins()) {
@@ -33,7 +30,7 @@ var buttons = {
 Api.copyMessage({
   from_chat_id: user.telegramid,
   message_id: request?.message_id,
-  chat_id: adminList[0],
+  chat_id: getAdmins()[0],
   reply_markup: buttons,
 });
 
