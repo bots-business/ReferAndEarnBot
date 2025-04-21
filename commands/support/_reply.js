@@ -1,19 +1,13 @@
 /*CMD
   command: /reply
-  help:
+  help: 
   need_reply: false
-  auto_retry_time:
+  auto_retry_time: 
   folder: support
-
-  <<ANSWER
-
-  ANSWER
-
-  <<KEYBOARD
-
-  KEYBOARD
-  aliases:
-  group:
+  answer: 
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
 if (!params || isNaN(params)) return;

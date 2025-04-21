@@ -1,8 +1,8 @@
 /*CMD
   command: /setup
-  help:
+  help: 
   need_reply: false
-  auto_retry_time:
+  auto_retry_time: 
   folder: setup
 
   <<ANSWER
@@ -12,8 +12,8 @@
   <<KEYBOARD
 
   KEYBOARD
-  aliases:
-  group:
+  aliases: 
+  group: 
 CMD*/
 
 // Please comment this line to prevent manual run

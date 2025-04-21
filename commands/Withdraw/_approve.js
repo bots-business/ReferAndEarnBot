@@ -1,19 +1,13 @@
 /*CMD
   command: /approve
-  help:
+  help: 
   need_reply: false
-  auto_retry_time:
+  auto_retry_time: 
   folder: Withdraw
-
-  <<ANSWER
-
-  ANSWER
-
-  <<KEYBOARD
-
-  KEYBOARD
-  aliases:
-  group:
+  answer: 
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
 // Helper function to get the current date
@@ -92,7 +86,7 @@ sendMessage(userId, userNotice);
 
 // Notify payout channel
 sendMessage(
-  values.ANNOUNCEMENT_CHANNEL,
+  SETTINGS.ANNOUNCEMENT_CHANNEL,
   `${requestInfo}\n\n<b>${statusText}</b>`,
   {
     inline_keyboard: [[{ text: "🗑️ Delete", callback_data: "/delete" }]],

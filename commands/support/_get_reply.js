@@ -1,19 +1,13 @@
 /*CMD
   command: /get_reply
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
+  auto_retry_time: 
   folder: support
-
-  <<ANSWER
-
-  ANSWER
-
-  <<KEYBOARD
-
-  KEYBOARD
-  aliases:
-  group:
+  answer: 
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
 var reply_to = User.getProperty("reply_to");

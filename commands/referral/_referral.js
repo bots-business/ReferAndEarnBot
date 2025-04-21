@@ -1,19 +1,13 @@
 /*CMD
   command: /referral
-  help:
+  help: 
   need_reply: false
-  auto_retry_time:
+  auto_retry_time: 
   folder: referral
-
-  <<ANSWER
-
-  ANSWER
-
-  <<KEYBOARD
-
-  KEYBOARD
-  aliases:
-  group:
+  answer: 
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
 // bonus and currency settings
@@ -76,4 +70,3 @@ Api.sendMessage({
   },
   reply_markup: buttons,
 });
-

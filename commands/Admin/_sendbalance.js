@@ -1,13 +1,13 @@
 /*CMD
   command: /sendbalance
-  help:
-  need_reply:
-  auto_retry_time:
-  folder:
-  answer:
-  keyboard:
-  aliases:
-  group:
+  help: 
+  need_reply: 
+  auto_retry_time: 
+  folder: Admin
+  answer: 
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
 const DEFAULT_CURRENCY = SETTINGS.CURRENCY || "TRX"; // Default currency

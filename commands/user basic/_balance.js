@@ -1,19 +1,13 @@
 /*CMD
   command: /balance
-  help:
+  help: 
   need_reply: false
-  auto_retry_time:
+  auto_retry_time: 
   folder: user basic
-
-  <<ANSWER
-
-  ANSWER
-
-  <<KEYBOARD
-
-  KEYBOARD
-  aliases:
-  group:
+  answer: 
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
 const linkPrefix = SETTINGS.REFER_LINK_PREFIX || "Bot";
@@ -35,7 +29,7 @@ const profileMessage = `
 📣 <b>Username:</b> ${username}
 👥 <b>Invited By:</b> ${inviter?.first_name || "None"}
 🔗 <b>Invite Link: ↓\n</b> <code>${inviteLink}</code>\n
-💰 <b>Balance:</b> ${balance} ${values.CURRENCY || "TRX"}
+💰 <b>Balance:</b> ${balance} ${SETTINGS.CURRENCY || "TRX"}
 🏦 <b>Wallet Address:</b> ↓\n<code>${walletAddress}</code>`;
 
 // Inline buttons

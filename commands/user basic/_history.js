@@ -1,13 +1,13 @@
 /*CMD
   command: /history
-  help:
-  need_reply:
-  auto_retry_time:
+  help: 
+  need_reply: 
+  auto_retry_time: 
   folder: user basic
-  answer:
-  keyboard:
-  aliases:
-  group:
+  answer: 
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
 // we have function to get and set withdrawal history on @ command
